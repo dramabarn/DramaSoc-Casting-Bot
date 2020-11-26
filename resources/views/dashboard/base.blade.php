@@ -42,20 +42,7 @@
 
     @yield('css')
 
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      // Shared ID
-      gtag('config', 'UA-118965717-3');
-      // Bootstrap ID
-      gtag('config', 'UA-118965717-5');
-    </script>
+      <script src="{{ asset('js/app.js') }}"></script>
 
     <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
   </head>
@@ -73,7 +60,7 @@
 
         <main class="c-main">
 
-          @yield('content') 
+          @yield('content')
 
         </main>
         @include('dashboard.shared.footer')

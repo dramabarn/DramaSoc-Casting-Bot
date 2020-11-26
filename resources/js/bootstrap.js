@@ -10,7 +10,8 @@ try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('resources/js/bootstrap');
+    // already required
+    // require('bootstrap');
 } catch (e) {}
 
 /**

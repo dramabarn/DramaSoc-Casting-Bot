@@ -19,6 +19,10 @@ class Users extends Model
         return $this->hasMany('App\Models\Notes');
     }
 
+    public function shows(){
+        return $this->hasMany('App\Models\Productions');
+    }
+
     protected $dates = [
         'deleted_at'
     ];
