@@ -20,8 +20,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
+
     Route::resources([
         'cast' => 'Cast']);
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('admin', 'AdminController@index');
+        Route::get('admin/meeting', 'AdminController@meeting')->name('castingMeeting');
+        Route::get('admin/add', 'AdminController@add')->name('addShow');
+        Route::get('admin/people', 'AdminController@people')->name('viewPeople');
+    });
 });
 
 //Route::group(['middleware' => ['get.menu','auth']], function () {
