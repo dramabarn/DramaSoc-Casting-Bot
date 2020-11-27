@@ -175,7 +175,7 @@ class AdminController extends Controller
                     if($otherWeek > $castWeek + $noSharingWeeks){
 
                         // if we're sharing be true
-                        if($casting['first_choice'] == $others['first_choice']){
+                        if($casting['1st_choice'] == $others['1st_choice']){
                             $share_cast = true;
                         }
 
@@ -200,11 +200,11 @@ class AdminController extends Controller
         $shows = Shows::all();
         $castings = $casts->where('casted', "false");
 
-        $SHARING_PROBLEMS = array();
+        $deadlock = array();
         //First off get the weeks of the plays
 
-
         foreach($castings as $casting) {
+            $share_cast = false;
             $castShow = $roles->where('id',$casting['role_name'])->pluck('show');
             $castWeek = $shows->whereIn('id',$castShow)->first()->week;
 
@@ -218,9 +218,8 @@ class AdminController extends Controller
 
                     // if this week is NOT within the 2 week period then check if sharing
                     if($otherWeek <= $castWeek + $noSharingWeeks){
-
                         // if we're sharing be true
-                        if($casting['first_choice'] == $others['first_choice']){
+                        if($casting['1st_choice'] == $others['1st_choice']){
                             $share_cast = true;
                         }
 
@@ -228,12 +227,12 @@ class AdminController extends Controller
 
                 }
                 if($share_cast){
-                    array_push($SHARING_PROBLEMS, $casting);
-                    array_push($SHARING_PROBLEMS, $others);
+                    array_push($deadlock, $casting);
+                    array_push($deadlock, $others);
                 }
             }
         }
-        return $SHARING_PROBLEMS;
+        return $deadlock;
     }
 
 
