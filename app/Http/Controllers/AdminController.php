@@ -22,7 +22,13 @@ class AdminController extends Controller
     }
 
     public function add(){
-        return view("admin.index");
+        return view("admin.addPlay");
+    }
+
+
+    public function view(){
+
+        return view("admin.viewProductions");
     }
 
     public function people(){

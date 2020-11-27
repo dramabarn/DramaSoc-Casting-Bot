@@ -22,6 +22,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('enter-cast', require('./components/casting/enterCast.vue').default);
 Vue.component('list-cast', require('./components/casting/listCast.vue').default);
 Vue.component('list-people', require('./components/admin/listPeople.vue').default);
+Vue.component('add-play', require('./components/admin/addPlay.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
