@@ -25,7 +25,8 @@ class AdminController extends Controller
         $casted = $this->getCastedRoles();
         $productionchoices = $this->getChoices();
         $freeCast = $this->getFreeToCast();
-//        $getSharingCasts = $this->getSharingCasts();
+        $sharing = $this->getSharingCasts();
+        $deadlock = $this->deadlock();
 
         return view("admin.castingMeeting",
             [
@@ -172,6 +173,51 @@ class AdminController extends Controller
 
                     // if this week is NOT within the 2 week period then check if sharing
                     if($otherWeek > $castWeek + $noSharingWeeks){
+
+                        // if we're sharing be true
+                        if($casting['first_choice'] == $others['first_choice']){
+                            $share_cast = true;
+                        }
+
+                    }
+
+                }
+                if($share_cast){
+                    array_push($SHARING_PROBLEMS, $casting);
+                    array_push($SHARING_PROBLEMS, $others);
+                }
+            }
+        }
+        return $SHARING_PROBLEMS;
+    }
+
+    public function deadlock(){
+        // What's the sharing period
+        $noSharingWeeks = 2;
+
+        $casts = Choices::all();
+        $roles = ActorRoles::all();
+        $shows = Shows::all();
+        $castings = $casts->where('casted', "false");
+
+        $SHARING_PROBLEMS = array();
+        //First off get the weeks of the plays
+
+
+        foreach($castings as $casting) {
+            $castShow = $roles->where('id',$casting['role_name'])->pluck('show');
+            $castWeek = $shows->whereIn('id',$castShow)->first()->week;
+
+            foreach ($castings as $others) {
+                $share_cast = false;
+                // cancles me out
+                $otherShow = $roles->where('id',$others['role_name'])->pluck('show');
+                $otherWeek = $shows->whereIn('id',$otherShow)->first()->week;
+
+                if($casting['id'] != $others['id']){
+
+                    // if this week is NOT within the 2 week period then check if sharing
+                    if($otherWeek <= $castWeek + $noSharingWeeks){
 
                         // if we're sharing be true
                         if($casting['first_choice'] == $others['first_choice']){
