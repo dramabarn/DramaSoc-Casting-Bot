@@ -10,14 +10,7 @@
             <h4 class="pt-3">Houston, we have a problem!</h4>
             <p class="text-muted">The page you are looking for is temporarily unavailable.</p>
           </div>
-          <div class="input-prepend input-group">
-            <div class="input-group-prepend"><span class="input-group-text">
-                <svg class="c-icon">
-                  <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-magnifying-glass"></use>
-                </svg></span></div>
-            <input class="form-control" id="prependedInput" size="16" type="text" placeholder="What are you looking for?"><span class="input-group-append">
-              <button class="btn btn-info" type="button">Search</button></span>
-          </div>
+          <a href="{{ route('home') }}" class="btn btn-info" type="button">Back to Dashboard</a>
         </div>
       </div>
     </div>
