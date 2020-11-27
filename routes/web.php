@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Auth::routes(['verify' => true]);
+Auth::routes();
 
 
 Route::group(['middleware' => ['get.menu', 'auth']], function () {

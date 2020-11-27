@@ -25,6 +25,7 @@ class AdminController extends Controller
         $casted = $this->getCastedRoles();
         $productionchoices = $this->getChoices();
         $freeCast = $this->getFreeToCast();
+//        $getSharingCasts = $this->getSharingCasts();
 
         return view("admin.castingMeeting",
             [
@@ -111,6 +112,71 @@ class AdminController extends Controller
         }
 
         return $SINGLE_CASTS;
+    }
+
+    private function getWaitingOn(){
+        $casts = Choices::all();
+        $castings = $casts->where('casted', "false");
+
+        $WAITING_ON = array();
+        $SINGLE_CAST = false;
+        $ANOTHER_FIRST = false;
+
+        $position = 0;
+
+        foreach($castings as $casting){
+
+            array_splice($castings,$position,1);
+            $ANOTHER_FIRST = false;
+            foreach($castings as $listing){
+
+                if($casting['1st_choice'] == $listing['2nd_choice'] || $casting['1st_choice'] == $listing['3rd_choice']){
+                    //They can't be cast until other things have been cast
+                    array_push($WAITING_ON, $casting);
+                    array_push($WAITING_ON,$listing);
+                }
+
+            }
+
+            $position++;
+
+        }
+
+        return $WAITING_ON;
+    }
+
+    public function getSharingCasts(){
+        $casts = Choices::all();
+        $castings = $casts->where('casted', "false");
+
+        $SHARING_PROBLEMS = array();
+        //First off get the weeks of the plays
+
+
+        foreach($castings as $casting) {
+
+            foreach ($castings as $others) {
+                $share_cast = false;
+                if($casting['id'] != $others['id']){
+
+                    //This aint the same casting
+                    if(($casting['play_id'] == $week_2) && ($others['play_id'] != $week_3) && ($others['play_id'] != $week_2)){
+
+                        //Not in the same week or week 3
+                        if($casting['first_choice'] == $others['first_choice']){
+                            $share_cast = true;
+                        }
+
+                    }
+
+                }
+                if($share_cast){
+                    array_push($SHARING_PROBLEMS, $casting);
+                    array_push($SHARING_PROBLEMS, $others);
+                }
+            }
+        }
+        return $SHARING_PROBLEMS;
     }
 
 

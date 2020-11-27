@@ -4,6 +4,7 @@
 
     <div id="app">
         <div class="col">
+            <free-to-cast></free-to-cast>
 {{--TODO for each production show cast --}}
             <view-remaining-cast v-bind:productionchoices="{{ json_encode($productionchoices ?? '')}}"></view-remaining-cast>
 {{--TODO for each production show casted --}}
