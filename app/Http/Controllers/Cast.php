@@ -73,4 +73,35 @@ class Cast extends Controller
             'productionChoices' => $data,
         ]);
     }
+
+    public function addRole(){
+        return view("user.addRole");
+    }
+
+    /**
+     * Store a newly created role member in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeRole(Request $request)
+    {
+        $you = auth()->user();
+        $production = Productions::where('user_id',$you->id)->first()->show_id;
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $role = new ActorRoles();
+
+        $role->name = $request->name;
+        $role->show = $production;
+
+        $role->save();
+        return response()->json([
+            'message' => 'Successfully created Role!',
+            'id' => $role->id
+        ], 201);
+    }
 }
