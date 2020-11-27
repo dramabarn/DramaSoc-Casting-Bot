@@ -24,6 +24,8 @@ Vue.component('list-cast', require('./components/casting/listCast.vue').default)
 Vue.component('list-people', require('./components/admin/listPeople.vue').default);
 Vue.component('add-play', require('./components/admin/addPlay.vue').default);
 Vue.component('view-productions', require('./components/admin/viewProductions.vue').default);
+Vue.component('view-casted', require('./components/admin/viewCasted.vue').default);
+Vue.component('view-remaining-cast', require('./components/admin/viewRemainingCast.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

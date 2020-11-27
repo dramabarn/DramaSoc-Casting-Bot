@@ -7,20 +7,22 @@
             <div class="card-body">
                 <table class="table table-responsive-sm">
                     <thead>
-                        <tr>
-                            <th>Role</th>
-                            <th>Option 1</th>
-                            <th>Option 2</th>
-                            <th>Option 3</th>
-                        </tr>
+                    <tr>
+                        <th>Show</th>
+                        <th>Role</th>
+                        <th>Option 1</th>
+                        <th>Option 2</th>
+                        <th>Option 3</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="choice in productionchoices">
-                            <td>{{ choice.role }}</td>
-                            <td>{{ choice.first }}</td>
-                            <td>{{ choice.second }}</td>
-                            <td>{{ choice.third }}</td>
-                        </tr>
+                    <tr v-for="choice in productionchoices">
+                        <td>{{ choice.show }}</td>
+                        <td>{{ choice.role }}</td>
+                        <td>{{ choice.first }}</td>
+                        <td>{{ choice.second }}</td>
+                        <td>{{ choice.third }}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
