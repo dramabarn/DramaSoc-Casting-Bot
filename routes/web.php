@@ -26,6 +26,7 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('admin', 'AdminController@index');
+        Route::get('admin/temp', 'AdminController@getSharingCasts');
         Route::get('admin/meeting', 'AdminController@meeting')->name('castingMeeting');
         Route::get('admin/add', 'AdminController@add')->name('addShow');
         Route::get('admin/view', 'AdminController@view')->name('viewProductions');
