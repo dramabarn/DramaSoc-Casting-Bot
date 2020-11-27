@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActorRoles;
+use App\Models\Actors;
+use App\Models\Choices;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -23,7 +26,12 @@ class AdminController extends Controller
     }
 
     public function people(){
-        return view("admin.index");
+
+        $actors = Actors::all();
+
+        return view("admin.people",[
+            'people'=>$actors,
+        ]);
     }
 
 }

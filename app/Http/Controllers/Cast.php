@@ -26,12 +26,28 @@ class Cast extends Controller
     public function enter(){
         $you = auth()->user();
         $production = Productions::where('user_id',$you->id)->first()->show_id;
-        $productionRoles = ActorRoles::where('show',$production)->get();
+        $productionRolesNames = ActorRoles::where('show',$production)->get();
         $actors = Actors::all();
 
+        $productionRoles = ActorRoles::where('show',$production)->pluck('id');
+        $choices = Choices::whereIn('role_name', $productionRoles)->get();
+        //change array formatting so keys are usable in vue (numbers are invalid)
+        $data = [];
+            foreach ($choices as $choice){
+                $item;
+                //this shit needs validation
+                $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
+                $item['first'] = Actors::where('id',$choice['1st_choice'])->first()->name;
+                $item['second'] = Actors::where('id',$choice['2nd_choice'])->first()->name;
+                $item['third'] = Actors::where('id',$choice['3rd_choice'])->first()->name;
+                array_push($data,$item);
+            }
+
+
         return view("user.enter",[
-            'productionRoles' =>$productionRoles,
+            'productionRoles' =>$productionRolesNames,
             'actors'=>$actors,
+            'productionChoices' => $data,
         ]);
     }
 

@@ -21,6 +21,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('enter-cast', require('./components/casting/enterCast.vue').default);
 Vue.component('list-cast', require('./components/casting/listCast.vue').default);
+Vue.component('list-people', require('./components/admin/listPeople.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
