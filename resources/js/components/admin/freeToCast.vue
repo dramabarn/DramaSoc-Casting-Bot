@@ -8,17 +8,19 @@
                 <table class="table table-responsive-sm">
                     <thead>
                     <tr>
+                        <th>Show</th>
                         <th>Role</th>
                         <th>Name</th>
                         <th>Number</th>
-                        <th></th>
+                        <th>Cast</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="choice in productionchoices">
+                    <tr v-for="choice in castable">
+                        <td>{{ choice.play }}</td>
                         <td>{{ choice.role }}</td>
-                        <td>{{ choice.first }}</td>
-                        <td>{{ choice.second }}</td>
+                        <td>{{ choice.person }}</td>
+                        <td>{{ choice.phone }}</td>
                         <td><button type="button" class="btn btn-square btn-danger"><i class="plus"></i>
                             Cast {{choice.id}}</button></td>
                     </tr>
@@ -33,7 +35,7 @@
 export default {
 
     props:{
-        productionchoices:{
+        castable:{
             type: Object,
         },
     }

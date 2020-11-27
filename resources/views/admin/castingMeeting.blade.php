@@ -4,11 +4,11 @@
 
     <div id="app">
         <div class="col">
-            <free-to-cast></free-to-cast>
+            <free-to-cast v-bind:castable="{{ json_encode($freeCast ?? '') }}"></free-to-cast>
 {{--TODO for each production show cast --}}
-            <view-remaining-cast v-bind:productionchoices="{{ json_encode($productionchoices ?? '')}}"></view-remaining-cast>
+            <view-remaining-cast v-bind:productionchoices="{{ json_encode($productionchoices ?? '') }}"></view-remaining-cast>
 {{--TODO for each production show casted --}}
-            <view-casted v-bind:casted="{{ json_encode($casted ?? '')}}"></view-casted>
+            <view-casted v-bind:casted="{{ json_encode($casted ?? '') }}"></view-casted>
         </div>
     </div>
 
