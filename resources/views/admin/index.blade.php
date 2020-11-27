@@ -26,6 +26,16 @@
     </div>
 
     <div class="col-sm-6 col-lg-3">
+        <a href="{{route('viewProductions')}}">
+            <div  class="card text-white bg-dark">
+                <div class="card-body">
+                    <div>View Shows</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
         <a href="{{route('viewPeople')}}">
             <div  class="card text-white bg-dark">
                 <div class="card-body">
