@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css",
     "/js/media.js": "/js/media.js",
     "/js/media-cropp.js": "/js/media-cropp.js",
@@ -21,6 +22,5 @@
     "/js/tooltips.js": "/js/tooltips.js",
     "/css/free.min.css": "/css/free.min.css",
     "/css/brand.min.css": "/css/brand.min.css",
-    "/css/flag.min.css": "/css/flag.min.css",
-    "/css/app.css": "/css/app.css"
+    "/css/flag.min.css": "/css/flag.min.css"
 }

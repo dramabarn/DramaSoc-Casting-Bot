@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('enter-cast', require('./components/casting/enterCast.vue').default);
+Vue.component('list-cast', require('./components/casting/listCast.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
