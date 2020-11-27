@@ -1,0 +1,38 @@
+<template>
+    <div class="col">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Productions</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-responsive-sm">
+                    <thead>
+                    <tr>
+                        <th>Show</th>
+                        <th>Type</th>
+                        <th>Week</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="show in productions">
+                        <td>{{ show.name }}</td>
+                        <td>{{ show.type }}</td>
+                        <td>{{ show.week }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+    props:{
+        productions:{
+            type: Object,
+        },
+    }
+}
+</script>
