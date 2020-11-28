@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActorRoles;
 use App\Models\Actors;
 use App\Models\Choices;
-use App\models\Shows;
+use App\Models\Shows;
 use App\Models\Productions;
 use Illuminate\Http\Request;
 
