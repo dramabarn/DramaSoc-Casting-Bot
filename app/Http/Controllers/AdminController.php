@@ -282,7 +282,7 @@ class AdminController extends Controller
         $casts = Choices::all();
         $roles = ActorRoles::all();
         $shows = Shows::all();
-        $castings = $casts->where('casted', False);
+        $castings = $casts->where('casted', False)->sortBy("1st_choice");
 
         $deadlock = array();
         //First off get the weeks of the plays
@@ -301,7 +301,7 @@ class AdminController extends Controller
                 if($casting['id'] != $others['id']){
 
                     // if this week is NOT within the 2 week period then check if sharing
-                    if($otherWeek <= $castWeek + $noSharingWeeks){
+                    if($otherWeek <= $castWeek + $noSharingWeeks && $otherWeek >= $castWeek - $noSharingWeeks){
                         // if we're sharing be true
                         if($casting['1st_choice'] == $others['1st_choice']){
                             $share_cast = true;
