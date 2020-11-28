@@ -21,7 +21,7 @@
                     </div>
                     <div class="row justify-content-center mt-4">
                         <div class="col-2">
-                            <button type="submit" class="btn btn-primary btn-block" :disabled="submitting" @click="enterCast" >
+                            <button type="submit" class="btn btn-primary btn-block" :disabled="submitting" @click="addRole" >
                                 <i class="fas fa-spinner fa-spin" v-if="submitting"></i>Submit</button>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ export default {
     methods: {
 
 
-        enterCast() {
+        addRole() {
             this.submitting = true
 
             let data = {
@@ -71,7 +71,7 @@ export default {
                     this.submitting = false
                     Swal.fire({
                         title: 'Role Added!',
-                        type: 'success',
+                        icon: 'success',
                         confirmButtonText: 'OK',
                     }).then((result) => {
                             window.location.href = "/cast/addrole"
@@ -82,7 +82,7 @@ export default {
                 // console.log(response.data.errors)
                 this.submitting = false
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong!',
                 }).then((result) => {

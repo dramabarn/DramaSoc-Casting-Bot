@@ -20,17 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="496890aa-bf33-4980-8b9a-054d1031239d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/casting/listRole.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DramaSoc-Casting-Bot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DramaSoc-Casting-Bot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/freeToCast.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/freeToCast.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/casting/addRole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/casting/addRole.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/base.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/addRole.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/addRole.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -286,10 +279,10 @@
     </state>
     <state x="424" y="233" key="#com.intellij.execution.impl.EditConfigurationsDialog/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1605984485532" />
     <state x="424" y="213" width="1071" height="778" key="#com.intellij.execution.impl.EditConfigurationsDialog/240.1105.1440.875/0.0.1920.1080@0.0.1920.1080" timestamp="1605984257531" />
-    <state x="698" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606505939436">
+    <state x="698" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606562865383">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state x="698" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606505939436" />
+    <state x="698" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606562865383" />
     <state width="1878" height="287" key="GridCell.Tab.0.bottom" timestamp="1606561204599">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
