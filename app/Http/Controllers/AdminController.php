@@ -37,48 +37,47 @@ class AdminController extends Controller
             ]);
     }
 
-    private function getCastedRoles(){
-        $casts = Choices::all();
+    private function convertChoices($choices){
         $shows = Shows::all();
-        $roles = ActorRoles::all();
-
-        $productionRoles = $roles->pluck('id');
-        $choices = $casts->where('casted', "true")->whereIn('role_name', $productionRoles);
-        //change array formatting so keys are usable in vue (numbers are invalid)
-        $data = [];
-        foreach ($choices as $choice){
-                $item;
-                $showId = ActorRoles::where('id',$choice['role_name'])->first()->id;
-                //this shit needs validation
-                $item['show'] = $shows->where('id',$showId)->first()->name;
-                $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
-                $item['name'] = Actors::where('id',$choice['1st_choice'])->first()->name;
-                array_push($data,$item);
-        }
-
-        return $data;
-    }
-
-    private function getChoices(){
-        $casts = Choices::all();
-        $choices = $casts->where('casted', "false");
-        $shows = Shows::all();
-
         //change array formatting so keys are usable in vue (numbers are invalid)
         $data = [];
         foreach ($choices as $choice){
             $item;
             $showId = ActorRoles::where('id',$choice['role_name'])->first()->show;
             //this shit needs validation
+            
             $item['show'] = $shows->where('id',$showId)->first()->name;
             $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
-            $item['first'] = Actors::where('id',$choice['1st_choice'])->first()->name;
-            $item['second'] = Actors::where('id',$choice['2nd_choice'])->first()->name;
-            $item['third'] = Actors::where('id',$choice['3rd_choice'])->first()->name;
+
+            $actor = Actors::where('id',$choice['1st_choice'])->first();
+            $item['first'] = !empty($actor->name) ? $actor->name:'';
+
+            $actor = Actors::where('id',$choice['2nd_choice'])->first();
+            $item['second'] = !empty($actor->name) ? $actor->name:'';
+
+            $actor = Actors::where('id',$choice['3rd_choice'])->first();
+            $item['third'] = !empty($actor->name) ? $actor->name:'';
             array_push($data,$item);
         }
 
         return $data;
+    }
+
+    private function getCastedRoles(){
+        $casts = Choices::all();
+        $roles = ActorRoles::all();
+
+        $productionRoles = $roles->pluck('id');
+        $choices = $casts->where('casted', "true")->whereIn('role_name', $productionRoles);
+
+        return $this->convertChoices($choices);
+    }
+
+    private function getChoices(){
+        $casts = Choices::all();
+        $choices = $casts->where('casted', "false");
+
+        return $this->convertChoices($choices);
 
     }
 
@@ -111,6 +110,7 @@ class AdminController extends Controller
                 $item;
                 $item['id'] = $casting['id'];
                 $item['role'] = ActorRoles::where('id',$casting['role_name'])->first()->role_name;
+                //i think the line below will cause an error at some point but i'm not certain...
                 $item['play'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->name;
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;
                 $item['phone'] = Actors::where('id',$casting['1st_choice'])->first()->phone;
@@ -141,7 +141,7 @@ class AdminController extends Controller
                 if($casting['1st_choice'] == $listing['2nd_choice'] || $casting['1st_choice'] == $listing['3rd_choice']){
                     //They can't be cast until other things have been cast
                     array_push($WAITING_ON, $casting);
-                    array_push($WAITING_ON,$listing);
+                    array_push($WAITING_ON, $listing);
                 }
 
             }
