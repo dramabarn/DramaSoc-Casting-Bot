@@ -21,7 +21,7 @@
                         <td>{{ choice.role }}</td>
                         <td>{{ choice.person }}</td>
                         <td>{{ choice.phone }}</td>
-                        <td><button type="button" class="btn btn-square btn-danger" @click="make_cast(choice.id)"><i class="plus"></i>
+                        <td><button type="button" class="btn btn-square btn-info" @click="make_cast(choice.id)"><i class="plus"></i>
                             Cast {{choice.person}}</button></td>
                     </tr>
                     </tbody>
