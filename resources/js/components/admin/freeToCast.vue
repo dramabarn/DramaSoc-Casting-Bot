@@ -21,8 +21,8 @@
                         <td>{{ choice.role }}</td>
                         <td>{{ choice.person }}</td>
                         <td>{{ choice.phone }}</td>
-                        <td><button type="button" class="btn btn-square btn-danger"><i class="plus"></i>
-                            Cast {{choice.id}}</button></td>
+                        <td><button type="button" class="btn btn-square btn-danger" @click="make_cast(choice.id)"><i class="plus"></i>
+                            Cast {{choice.person}}</button></td>
                     </tr>
                     </tbody>
                 </table>
@@ -38,6 +38,21 @@ export default {
         castable:{
             type: Object,
         },
+    },
+
+    data() {
+        return {
+            submitting: false
+        }
+    },
+
+    methods: {
+
+        make_cast(id) {
+            this.submitting = true
+            console.log(id)
+        }
+
     }
 }
 </script>

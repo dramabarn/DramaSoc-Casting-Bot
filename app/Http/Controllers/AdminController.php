@@ -109,6 +109,7 @@ class AdminController extends Controller
             if($SINGLE){
                 //convert db keys to usable object keys (DAMMIT NATHAN)
                 $item;
+                $item['id'] = $casting['id'];
                 $item['role'] = ActorRoles::where('id',$casting['role_name'])->first()->role_name;
                 $item['play'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->name;
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;

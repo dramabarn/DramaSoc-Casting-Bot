@@ -136,12 +136,16 @@ class MenusTableSeeder extends Seeder
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
         $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
 
+        //this should probs be only users, as admin will not have a show
         $this->insertTitle('user,admin', 'Casting');
+        $this->insertLink('user,admin', 'Add role', '/cast/addrole', 'cil-plus');
         $this->insertLink('user,admin', 'Enter Casting Choice', '/cast/enter', 'cil-pencil ');
         $this->insertLink('user,admin', 'View Choices', '/cast/choices', 'cil-list');
 
+        $this->insertTitle('admin', 'Casting Meeting');
+        $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-chat-bubble');
+        
         $this->insertTitle('admin', 'Admin');
-        $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-group');
         $this->insertLink('admin', 'Add Show', '/admin/add', 'cil-plus');
         $this->insertLink('admin', 'View Users', '/admin/people', 'cil-people');
 
