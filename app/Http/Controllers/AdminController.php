@@ -227,7 +227,7 @@ class AdminController extends Controller
         $casts = Choices::all();
         $roles = ActorRoles::all();
         $shows = Shows::all();
-        $castings = $casts->where('casted', "0");
+        $castings = $casts->where('casted', False);
         $SHARING_PROBLEMS = array();
 
         foreach($castings as $casting) {
@@ -255,8 +255,8 @@ class AdminController extends Controller
                 }
                 if($share_cast){
                     $data = [];
-                    $data['firstid'] = $casting['role_name'];
-                    $data['secondid'] = $others['role_name'];
+                    $data['firstid'] = $casting['id'];
+                    $data['secondid'] = $others['id'];
                     $data['name'] = Actors::where('id', $casting['1st_choice'])->first()->name;
                     $data['phone'] = Actors::where('id', $casting['1st_choice'])->first()->phone;
                     $data['firstshow'] = $shows->whereIn('id',$castShow)->first()->name;

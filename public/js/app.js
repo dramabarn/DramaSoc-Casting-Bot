@@ -2332,7 +2332,53 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    make_cast: function make_cast(person, role) {}
+    make_cast: function make_cast(role1, role2) {
+      var _this = this;
+
+      this.submitting = true;
+      var data = {
+        role_id: role1
+      };
+      axios.post("/admin/cast-person", data).then(function (response) {
+        _this.errors = {};
+        var data = {
+          role_id: role2
+        };
+        axios.post("/admin/cast-person", data).then(function (response) {
+          _this.errors = {};
+          _this.submitting = false;
+          Swal.fire({
+            title: 'Casted!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(function (result) {
+            window.location.href = "/admin/meeting";
+          });
+        })["catch"](function (error) {
+          console.log(error); // console.log(response.data.errors)
+
+          _this.submitting = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+          }).then(function (result) {
+            location.reload();
+          });
+        });
+      })["catch"](function (error) {
+        console.log(error); // console.log(response.data.errors)
+
+        _this.submitting = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        }).then(function (result) {
+          location.reload();
+        });
+      });
+    }
   }
 });
 

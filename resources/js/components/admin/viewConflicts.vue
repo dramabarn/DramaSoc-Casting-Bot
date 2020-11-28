@@ -48,8 +48,56 @@ export default {
 
     methods: {
 
-        make_cast(person, role) {
-            
+        make_cast(role1, role2) {
+            this.submitting = true
+
+            let data = {
+                role_id: role1,
+            }
+
+            axios.post(`/admin/cast-person`, data)
+                .then(response => {
+                    this.errors = {}
+                    let data = {
+                        role_id: role2,
+                    }
+
+                    axios.post(`/admin/cast-person`, data)
+                        .then(response => {
+                            this.errors = {}
+                            this.submitting = false
+                            Swal.fire({
+                                title: 'Casted!',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                            }).then((result) => {
+                                    window.location.href = "/admin/meeting"
+                                }
+                            )
+                        }).catch(error => {
+                        console.log(error)
+                        // console.log(response.data.errors)
+                        this.submitting = false
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    })
+                }).catch(error => {
+                console.log(error)
+                // console.log(response.data.errors)
+                this.submitting = false
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                }).then((result) => {
+                    location.reload();
+                });
+            })
         }
 
     }

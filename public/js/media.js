@@ -263,7 +263,7 @@ self.showCard('file-info-card');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\coreui\media.js */"./resources/js/coreui/media.js");
+module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/coreui/media.js */"./resources/js/coreui/media.js");
 
 
 /***/ })
