@@ -33,6 +33,7 @@ class Cast extends Controller
             $choices = $this->getChoiceData();
         } else {
             $showInfo['hasShow'] = false;
+            $choices = "";
         }
         return view("user.home",[
             'username' => $you->name,
