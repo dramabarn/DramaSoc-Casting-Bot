@@ -161,7 +161,7 @@ document.getElementById("type").onchange = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/coreui/menu-edit.js */"./resources/js/coreui/menu-edit.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\coreui\menu-edit.js */"./resources/js/coreui/menu-edit.js");
 
 
 /***/ })

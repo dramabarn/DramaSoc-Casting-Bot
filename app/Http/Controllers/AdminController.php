@@ -37,7 +37,8 @@ class AdminController extends Controller
                 'productionchoices'=> $productionchoices,
                 'casted'=> $casted,
                 'freeCast'=> $freeCast,
-                'sharing'=> $sharing
+                'sharing'=> $sharing,
+                'deadlocks' => $deadlock
             ]);
     }
 
@@ -310,8 +311,20 @@ class AdminController extends Controller
 
                 }
                 if($share_cast){
-                    array_push($deadlock, $casting);
-                    array_push($deadlock, $others);
+                    $data = [];
+                    $data['firstid'] = $casting['id'];
+                    $data['secondid'] = $others['id'];
+                    $data['name'] = Actors::where('id', $casting['1st_choice'])->first()->name;
+                    $data['phone'] = Actors::where('id', $casting['1st_choice'])->first()->phone;
+                    $data['firstshow'] = $shows->whereIn('id',$castShow)->first()->name;
+                    $data['firstweek'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
+                    $data['firsttype'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->type;
+                    $data['firstrole'] = $roles->where('id',$casting['role_name'])->first()->role_name;
+                    $data['secondshow'] = $shows->whereIn('id',$otherShow)->first()->name;
+                    $data['secondweek'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->week;
+                    $data['secondtype'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->type;
+                    $data['secondrole'] = $roles->where('id',$others['role_name'])->first()->role_name;
+                    array_push($deadlock, $data);
                 }
             }
         }
