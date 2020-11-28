@@ -42,7 +42,7 @@
                         <div class="col">
                             <label>Role</label>
                             <select class="dropdown-list form-control mb-3" placeholder="Select Role..." v-model="rolename">
-                                <option v-for="role in productionroles">
+                                <option v-for="role in productionroles" v-bind:value="role.id">
                                     {{ role.role_name }}
                                 </option>
                             </select>
@@ -53,9 +53,9 @@
                         <div class="col">
                             <label> Choice</label>
                             <select class="dropdown-list form-control mb-3" v-model="choice">
-                                <option value="1st_Choice">1st Choice</option>
-                                <option value="2nd_Choice">2nd Choice</option>
-                                <option value="3rd_Choice">3rd Choice</option>
+                                <option value="1st_choice">1st Choice</option>
+                                <option value="2nd_choice">2nd Choice</option>
+                                <option value="3rd_choice">3rd Choice</option>
                             </select>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export default {
             username: "",
             phone: "",
             rolename:"",
-            choice: "1st_Choice",
+            choice: "1st_choice",
             submitting: false,
         }
     },
@@ -108,30 +108,30 @@ export default {
                 name: this.name,
                 username: this.username,
                 phone: this.phone,
-                role: this.role,
+                role_id: this.rolename,
                 choice: this.choice,
 
             }
             console.log(data)
 
-            axios.post(`/api/cast`, data)
+            axios.post(`/cast/enter`, data)
                 .then(response => {
                     this.errors = {}
                     this.submitting = false
                     Swal.fire({
-                        title: 'Production Added!',
-                        type: 'success',
+                        title: 'Choice Added!',
+                        icon: 'success',
                         confirmButtonText: 'OK',
                     }).then((result) => {
-                            window.location.href = "cast/enter"
+                            window.location.href = "/cast/enter"
                         }
                     )
                 }).catch(error => {
                 console.log(error)
-                // console.log(response.data.errors)
+                console.log(response.data.errors)
                 this.submitting = false
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong!',
                 }).then((result) => {

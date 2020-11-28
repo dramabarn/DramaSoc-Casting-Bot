@@ -53,7 +53,7 @@ class AdminController extends Controller
             $item;
             $showId = ActorRoles::where('id',$choice['role_name'])->first()->show;
             //this shit needs validation
-            
+
             $item['show'] = $shows->where('id',$showId)->first()->name;
             $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
 
@@ -86,7 +86,6 @@ class AdminController extends Controller
         $choices = $casts->where('casted', "false");
 
         return $this->convertChoices($choices);
-
     }
 
     private function getFreeToCast(){
