@@ -2426,10 +2426,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     productionchoices: {
       type: Object
+    }
+  },
+  data: function data() {
+    return {
+      submitting: false
+    };
+  },
+  methods: {
+    make_cast: function make_cast(id) {
+      var _this = this;
+
+      this.submitting = true;
+      console.log(id);
+      var data = {
+        role_id: id
+      };
+      axios.post("/admin/remove", data).then(function (response) {
+        _this.errors = {};
+        _this.submitting = false;
+        Swal.fire({
+          title: 'Removed!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(function (result) {
+          window.location.href = "/admin/meeting";
+        });
+      })["catch"](function (error) {
+        console.log(error); // console.log(response.data.errors)
+
+        _this.submitting = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        }).then(function (result) {
+          location.reload();
+        });
+      });
     }
   }
 });
@@ -37704,7 +37748,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-square btn-danger",
+                      staticClass: "btn btn-square btn-info",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -38149,11 +38193,59 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.role))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(choice.first))]),
+                _c("td", [_vm._v(_vm._s(choice.first) + " ")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.make_cast(choice.firstid)
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.second))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(choice.third))])
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.make_cast(choice.secondid)
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(choice.third))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.make_cast(choice.thirdid)
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                  )
+                ])
               ])
             }),
             0
@@ -38184,9 +38276,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Option 1")]),
         _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
         _c("th", [_vm._v("Option 2")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Option 3")])
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Option 3")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
