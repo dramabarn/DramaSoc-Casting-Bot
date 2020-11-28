@@ -37,6 +37,14 @@ class AdminController extends Controller
             ]);
     }
 
+    public function castPerson(Request $request){
+            $role_id = $request->role_id;
+            $role = Choices::where('id', $role_id)->firstOrFail();
+            $role->casted = "true";
+            $role->save();
+            return response()->json($role);
+    }
+
     private function convertChoices($choices){
         $shows = Shows::all();
         //change array formatting so keys are usable in vue (numbers are invalid)
