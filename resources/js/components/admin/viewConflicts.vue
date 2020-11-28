@@ -19,8 +19,8 @@
                         <tr v-for="conflict in productionconflicts">
                             <td>{{ conflict.name }}</td>
                             <td>{{ conflict.phone }}</td>
-                            <td>{{ conflict.firstshow }} - {{conflict.firstrole }}</td>
-                            <td>{{ conflict.secondshow }} - {{conflict.secondrole }}</td>
+                            <td>{{ conflict.firstshow }} - {{conflict.firstrole }} | {{conflict.firsttype }} Week {{conflict.firstweek }} </td>
+                            <td>{{ conflict.secondshow }} - {{conflict.secondrole }} | {{conflict.secondtype }} Week {{conflict.secondweek }}</td>
                             <td><button type="button" class="btn btn-square btn-danger" @click="make_cast(conflict.firstid, conflict.secondid)"><i class="plus"></i>
                             Cast {{conflict.name}}</button></td>
                         </tr>
@@ -48,57 +48,8 @@ export default {
 
     methods: {
 
-        make_cast(role1, role2) {
-            this.submitting = true
-            console.log(id)
-
-            let data = {
-                role_id: role1,
-            }
-
-            axios.post(`/admin/cast-person`, data)
-                .then(response => {
-                    this.errors = {}
-                    let data = {
-                        role_id: role2,
-                    }
-
-                    axios.post(`/admin/cast-person`, data)
-                        .then(response => {
-                            this.errors = {}
-                            this.submitting = false
-                            Swal.fire({
-                                title: 'Casted!',
-                                icon: 'success',
-                                confirmButtonText: 'OK',
-                            }).then((result) => {
-                                    window.location.href = "/admin/meeting"
-                                }
-                            )
-                        }).catch(error => {
-                        console.log(error)
-                        // console.log(response.data.errors)
-                        this.submitting = false
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!',
-                        }).then((result) => {
-                            location.reload();
-                        });
-                    })
-                }).catch(error => {
-                console.log(error)
-                // console.log(response.data.errors)
-                this.submitting = false
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                }).then((result) => {
-                    location.reload();
-                });
-            })
+        make_cast(person, role) {
+            
         }
 
     }

@@ -2332,54 +2332,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    make_cast: function make_cast(role1, role2) {
-      var _this = this;
-
-      this.submitting = true;
-      console.log(id);
-      var data = {
-        role_id: role1
-      };
-      axios.post("/admin/cast-person", data).then(function (response) {
-        _this.errors = {};
-        var data = {
-          role_id: role2
-        };
-        axios.post("/admin/cast-person", data).then(function (response) {
-          _this.errors = {};
-          _this.submitting = false;
-          Swal.fire({
-            title: 'Casted!',
-            icon: 'success',
-            confirmButtonText: 'OK'
-          }).then(function (result) {
-            window.location.href = "/admin/meeting";
-          });
-        })["catch"](function (error) {
-          console.log(error); // console.log(response.data.errors)
-
-          _this.submitting = false;
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!'
-          }).then(function (result) {
-            location.reload();
-          });
-        });
-      })["catch"](function (error) {
-        console.log(error); // console.log(response.data.errors)
-
-        _this.submitting = false;
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        }).then(function (result) {
-          location.reload();
-        });
-      });
-    }
+    make_cast: function make_cast(person, role) {}
   }
 });
 
@@ -38006,7 +37959,12 @@ var render = function() {
                   _vm._v(
                     _vm._s(conflict.firstshow) +
                       " - " +
-                      _vm._s(conflict.firstrole)
+                      _vm._s(conflict.firstrole) +
+                      " | " +
+                      _vm._s(conflict.firsttype) +
+                      " Week " +
+                      _vm._s(conflict.firstweek) +
+                      " "
                   )
                 ]),
                 _vm._v(" "),
@@ -38014,7 +37972,11 @@ var render = function() {
                   _vm._v(
                     _vm._s(conflict.secondshow) +
                       " - " +
-                      _vm._s(conflict.secondrole)
+                      _vm._s(conflict.secondrole) +
+                      " | " +
+                      _vm._s(conflict.secondtype) +
+                      " Week " +
+                      _vm._s(conflict.secondweek)
                   )
                 ]),
                 _vm._v(" "),
@@ -51834,9 +51796,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/sass/style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

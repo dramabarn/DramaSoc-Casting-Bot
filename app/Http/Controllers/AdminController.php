@@ -87,7 +87,7 @@ class AdminController extends Controller
 
     private function getChoices(){
         $casts = Choices::all();
-        $choices = $casts->where('casted', False);
+        $choices = $casts->where('casted', False)->sortBy("role_name");
 
         return $this->convertChoices($choices);
     }
@@ -123,6 +123,7 @@ class AdminController extends Controller
                 $item['role'] = ActorRoles::where('id',$casting['role_name'])->first()->role_name;
                 //i think the line below will cause an error at some point but i'm not certain...
                 $item['play'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->name;
+                $item['week'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;
                 $item['phone'] = Actors::where('id',$casting['1st_choice'])->first()->phone;
                 array_push($SINGLE_CASTS, $item);
@@ -203,8 +204,12 @@ class AdminController extends Controller
                     $data['name'] = Actors::where('id', $casting['1st_choice'])->first()->name;
                     $data['phone'] = Actors::where('id', $casting['1st_choice'])->first()->phone;
                     $data['firstshow'] = $shows->whereIn('id',$castShow)->first()->name;
+                    $data['firstweek'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
+                    $data['firsttype'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->type;
                     $data['firstrole'] = $roles->where('id',$casting['role_name'])->first()->role_name;
                     $data['secondshow'] = $shows->whereIn('id',$otherShow)->first()->name;
+                    $data['secondweek'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->week;
+                    $data['secondtype'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->type;
                     $data['secondrole'] = $roles->where('id',$others['role_name'])->first()->role_name;
                     array_push($SHARING_PROBLEMS, $data);
                 }
