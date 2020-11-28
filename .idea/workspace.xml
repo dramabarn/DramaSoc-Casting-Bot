@@ -22,8 +22,8 @@
     <list default="true" id="496890aa-bf33-4980-8b9a-054d1031239d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/freeToCast.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/freeToCast.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/casting/addRole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/casting/addRole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/casting/enterCast.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/casting/enterCast.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
