@@ -135,6 +135,7 @@ class MenusTableSeeder extends Seeder
         ]);
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
         $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
+        $this->insertLink('user,admin', 'Log Out', '/logout', 'cil-account-logout');
 
         //this should probs be only users, as admin will not have a show
         $this->insertTitle('user,admin', 'Casting');
