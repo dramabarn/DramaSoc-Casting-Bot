@@ -17,7 +17,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="choice in castable">
-                        <td>{{ choice.play }}</td>
+                        <td>{{ choice.play }} | {{ choice.type }} {{ choice.week }}</td>
                         <td>{{ choice.role }}</td>
                         <td>{{ choice.person }}</td>
                         <td>{{ choice.phone }}</td>

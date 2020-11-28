@@ -60,6 +60,8 @@ class AdminController extends Controller
             //this shit needs validation
 
             $item['show'] = $shows->where('id',$showId)->first()->name;
+            $item['week'] = $shows->where('id',$showId)->first()->week;
+            $item['type'] = $shows->where('id',$showId)->first()->type;
             $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
 
             $actor = Actors::where('id',$choice['1st_choice'])->first();
@@ -181,6 +183,7 @@ class AdminController extends Controller
                 //i think the line below will cause an error at some point but i'm not certain...
                 $item['play'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->name;
                 $item['week'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
+                $item['type'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->type;
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;
                 $item['phone'] = Actors::where('id',$casting['1st_choice'])->first()->phone;
                 array_push($SINGLE_CASTS, $item);
