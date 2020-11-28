@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -154,7 +154,7 @@ document.getElementById("type").onchange = function () {
 
 /***/ }),
 
-/***/ 21:
+/***/ 2:
 /*!************************************************!*\
   !*** multi ./resources/js/coreui/menu-edit.js ***!
   \************************************************/

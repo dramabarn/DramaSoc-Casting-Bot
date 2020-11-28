@@ -33,10 +33,11 @@ class AdminController extends Controller
 
         return view("admin.castingMeeting",
             [
-                'productions'=>$productions,
-                'productionchoices'=>$productionchoices,
-                'casted'=>$casted,
-                'freeCast'=>$freeCast
+                'productions'=> $productions,
+                'productionchoices'=> $productionchoices,
+                'casted'=> $casted,
+                'freeCast'=> $freeCast,
+                'sharing'=> $sharing
             ]);
     }
 
@@ -63,15 +64,71 @@ class AdminController extends Controller
             $actor = Actors::where('id',$choice['1st_choice'])->first();
             $item['first'] = !empty($actor->name) ? $actor->name:'';
 
+            $actor = Actors::where('id',$choice['1st_choice'])->first();
+            $item['firstid'] = !empty($actor->id) ? $actor->id:'';
+
             $actor = Actors::where('id',$choice['2nd_choice'])->first();
             $item['second'] = !empty($actor->name) ? $actor->name:'';
 
+            $actor = Actors::where('id',$choice['2nd_choice'])->first();
+            $item['secondid'] = !empty($actor->id) ? $actor->id:'';
+
             $actor = Actors::where('id',$choice['3rd_choice'])->first();
             $item['third'] = !empty($actor->name) ? $actor->name:'';
+
+            $actor = Actors::where('id',$choice['3rd_choice'])->first();
+            $item['thirdid'] = !empty($actor->id) ? $actor->id:'';
+
             array_push($data,$item);
         }
 
         return $data;
+    }
+
+    public function deleteChoice(Request $request){
+        $role_id = $request->
+
+        $role = Choices::where('id', $role_id)->firstOrFail();
+
+
+        if($choice == 3){
+                //Do Nothing, since it doesn't affect the others
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('third_choice'=>0));
+
+            }else if($choice == 2){
+                //Set the third choice as second choice.
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('second_choice'=>$CASTING_CHOICES['third_choice']));
+
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('third_choice'=>0));
+
+            }else if($choice == 1){
+                //Set the first choice to second, and second to third an third to 0
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('first_choice'=>$CASTING_CHOICES['second_choice']));
+
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('second_choice'=>$CASTING_CHOICES['third_choice']));
+
+                $this->db->where('casting_id',$casting);
+                $this->db->update('casting',array('third_choice'=>0));
+
+            }
+
+            $this->db->select("*");
+            $this->db->from('casting');
+            $this->db->where('casting_id',$casting);
+            $query = $this->db->get();
+            $CASTING_CHOICES = $query->row_array();
+
+            if(($CASTING_CHOICES['first_choice'] == 0) && ($CASTING_CHOICES['second_choice'] == 0) && ($CASTING_CHOICES['third_choice'] == 0)){
+                //Delete the whole row
+                $this->db->where('casting_id',$casting);
+                $this->db->delete('casting');
+            }
+
     }
 
     private function getCastedRoles(){
@@ -86,7 +143,7 @@ class AdminController extends Controller
 
     private function getChoices(){
         $casts = Choices::all();
-        $choices = $casts->where('casted', False);
+        $choices = $casts->where('casted', False)->sortBy("role_name");
 
         return $this->convertChoices($choices);
     }
@@ -122,6 +179,7 @@ class AdminController extends Controller
                 $item['role'] = ActorRoles::where('id',$casting['role_name'])->first()->role_name;
                 //i think the line below will cause an error at some point but i'm not certain...
                 $item['play'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->name;
+                $item['week'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;
                 $item['phone'] = Actors::where('id',$casting['1st_choice'])->first()->phone;
                 array_push($SINGLE_CASTS, $item);
@@ -159,7 +217,6 @@ class AdminController extends Controller
             $position++;
 
         }
-
         return $WAITING_ON;
     }
 
@@ -171,10 +228,7 @@ class AdminController extends Controller
         $roles = ActorRoles::all();
         $shows = Shows::all();
         $castings = $casts->where('casted', False);
-
         $SHARING_PROBLEMS = array();
-        //First off get the weeks of the plays
-
 
         foreach($castings as $casting) {
             $castShow = $roles->where('id',$casting['role_name'])->pluck('show');
@@ -200,8 +254,20 @@ class AdminController extends Controller
 
                 }
                 if($share_cast){
-                    array_push($SHARING_PROBLEMS, $casting);
-                    array_push($SHARING_PROBLEMS, $others);
+                    $data = [];
+                    $data['firstid'] = $casting['id'];
+                    $data['secondid'] = $others['id'];
+                    $data['name'] = Actors::where('id', $casting['1st_choice'])->first()->name;
+                    $data['phone'] = Actors::where('id', $casting['1st_choice'])->first()->phone;
+                    $data['firstshow'] = $shows->whereIn('id',$castShow)->first()->name;
+                    $data['firstweek'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->week;
+                    $data['firsttype'] = Shows::where('id', ActorRoles::where('id',$casting['role_name'])->first()->show)->first()->type;
+                    $data['firstrole'] = $roles->where('id',$casting['role_name'])->first()->role_name;
+                    $data['secondshow'] = $shows->whereIn('id',$otherShow)->first()->name;
+                    $data['secondweek'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->week;
+                    $data['secondtype'] = Shows::where('id', ActorRoles::where('id',$others['role_name'])->first()->show)->first()->type;
+                    $data['secondrole'] = $roles->where('id',$others['role_name'])->first()->role_name;
+                    array_push($SHARING_PROBLEMS, $data);
                 }
             }
         }

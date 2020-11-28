@@ -22,7 +22,12 @@
     <list default="true" id="496890aa-bf33-4980-8b9a-054d1031239d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Cast.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/media-cropp.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/media-cropp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/media.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/media.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/menu-create.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu-create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/menu-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/admin/viewConflicts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/admin/viewConflicts.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,25 +301,25 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="698" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606570657256" />
-    <state width="1878" height="287" key="GridCell.Tab.0.bottom" timestamp="1606561204599">
+    <state width="1878" height="287" key="GridCell.Tab.0.bottom" timestamp="1606599279106">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="287" key="GridCell.Tab.0.bottom/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606561204599" />
+    <state width="1878" height="287" key="GridCell.Tab.0.bottom/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606599279106" />
     <state width="1878" height="296" key="GridCell.Tab.0.bottom/240.1105.1440.875/0.0.1920.1080@0.0.1920.1080" timestamp="1605984260648" />
-    <state width="1878" height="287" key="GridCell.Tab.0.center" timestamp="1606561204598">
+    <state width="1878" height="287" key="GridCell.Tab.0.center" timestamp="1606599279106">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="287" key="GridCell.Tab.0.center/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606561204598" />
+    <state width="1878" height="287" key="GridCell.Tab.0.center/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606599279106" />
     <state width="1878" height="296" key="GridCell.Tab.0.center/240.1105.1440.875/0.0.1920.1080@0.0.1920.1080" timestamp="1605984260646" />
-    <state width="1878" height="287" key="GridCell.Tab.0.left" timestamp="1606561204597">
+    <state width="1878" height="287" key="GridCell.Tab.0.left" timestamp="1606599279104">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="287" key="GridCell.Tab.0.left/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606561204597" />
+    <state width="1878" height="287" key="GridCell.Tab.0.left/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606599279104" />
     <state width="1878" height="296" key="GridCell.Tab.0.left/240.1105.1440.875/0.0.1920.1080@0.0.1920.1080" timestamp="1605984260643" />
-    <state width="1878" height="287" key="GridCell.Tab.0.right" timestamp="1606561204598">
+    <state width="1878" height="287" key="GridCell.Tab.0.right" timestamp="1606599279106">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state width="1878" height="287" key="GridCell.Tab.0.right/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606561204598" />
+    <state width="1878" height="287" key="GridCell.Tab.0.right/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1606599279106" />
     <state width="1878" height="296" key="GridCell.Tab.0.right/240.1105.1440.875/0.0.1920.1080@0.0.1920.1080" timestamp="1605984260647" />
     <state x="469" y="188" key="SettingsEditor" timestamp="1605984626539">
       <screen x="0" y="25" width="1920" height="1055" />
@@ -324,5 +329,17 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="0" y="25" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog/240.1105.1440.826/0.25.1920.1055@0.25.1920.1055" timestamp="1605984576711" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/admin/viewConflicts.vue</url>
+          <line>36</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

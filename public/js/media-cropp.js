@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -156,7 +156,7 @@ document.getElementById('cropp-img-save-button').addEventListener('click', this.
 
 /***/ }),
 
-/***/ 23:
+/***/ 4:
 /*!**************************************************!*\
   !*** multi ./resources/js/coreui/media-cropp.js ***!
   \**************************************************/
