@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function castPerson(Request $request){
             $role_id = $request->role_id;
             $role = Choices::where('id', $role_id)->firstOrFail();
-            $role->casted = "true";
+            $role->casted = True;
             $role->save();
             return response()->json($role);
     }
@@ -79,21 +79,21 @@ class AdminController extends Controller
         $roles = ActorRoles::all();
 
         $productionRoles = $roles->pluck('id');
-        $choices = $casts->where('casted', "true")->orWhere('casted', True)->whereIn('role_name', $productionRoles);
+        $choices = $casts->where('casted', True)->whereIn('role_name', $productionRoles);
 
         return $this->convertChoices($choices);
     }
 
     private function getChoices(){
         $casts = Choices::all();
-        $choices = $casts->where('casted', "false")->orWhere('casted', False);
+        $choices = $casts->where('casted', False);
 
         return $this->convertChoices($choices);
     }
 
     private function getFreeToCast(){
         $casts = Choices::all();
-        $castings = $casts->where('casted', "false")->orWhere('casted', False);
+        $castings = $casts->where('casted', False);
         //we maintain 3 arrays - single casts, adjacent casts and sharing casts
         $SINGLE_CASTS = array();
 
@@ -134,7 +134,7 @@ class AdminController extends Controller
 
     private function getWaitingOn(){
         $casts = Choices::all();
-        $castings = $casts->where('casted', "false")->orWhere('casted', False);
+        $castings = $casts->where('casted', False);
 
         $WAITING_ON = array();
         $SINGLE_CAST = false;
@@ -170,7 +170,7 @@ class AdminController extends Controller
         $casts = Choices::all();
         $roles = ActorRoles::all();
         $shows = Shows::all();
-        $castings = $casts->where('casted', "false")->orWhere('casted', False);
+        $castings = $casts->where('casted', False);
 
         $SHARING_PROBLEMS = array();
         //First off get the weeks of the plays
@@ -215,7 +215,7 @@ class AdminController extends Controller
         $casts = Choices::all();
         $roles = ActorRoles::all();
         $shows = Shows::all();
-        $castings = $casts->where('casted', "false")->orWhere('casted', False);
+        $castings = $casts->where('casted', False);
 
         $deadlock = array();
         //First off get the weeks of the plays

@@ -131,7 +131,7 @@ class Cast extends Controller
                 $choice = new Choices();
                 $choice->role_name = $request->role_id;
                 $choice->$requestChoice = $actor_id[0];
-                $choice->casted = "false";
+                $choice->casted = False;
 
                 $choice->save();
             }
@@ -149,7 +149,7 @@ class Cast extends Controller
                 $choice = new Choices();
                 $choice->role_name = $request->role_id;
                 $choice->$requestChoice = $actor_id;
-                $choice->casted = "false";
+                $choice->casted = False;
 
                 $choice->save();
             }
