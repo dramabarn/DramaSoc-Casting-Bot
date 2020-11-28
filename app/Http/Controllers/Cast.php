@@ -24,11 +24,12 @@ class Cast extends Controller
         $production = Productions::where('user_id',$you->id)->first();
         if (!empty($production)){
             $show = Shows::where('id', $production->show_id)->first();
+            $roles = ActorRoles::where('show', $production->show_id)->count();
             $showInfo['hasShow'] = true;
             $showInfo['name'] = $show->name;
             $showInfo['type'] = $show->type;
             $showInfo['week'] = $show->week;
-            $showInfo['roles'] = "-1";
+            $showInfo['roles'] = $roles;
 
             $choices = $this->getChoiceData();
         } else {

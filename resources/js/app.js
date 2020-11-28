@@ -32,6 +32,7 @@ Vue.component('view-productions', require('./components/admin/viewProductions.vu
 Vue.component('view-casted', require('./components/admin/viewCasted.vue').default);
 Vue.component('view-remaining-cast', require('./components/admin/viewRemainingCast.vue').default);
 Vue.component('free-to-cast', require('./components/admin/freeToCast.vue').default);
+Vue.component('view-conflicts', require('./components/admin/viewConflicts.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

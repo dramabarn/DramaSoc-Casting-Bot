@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -156,14 +156,14 @@ document.getElementById('cropp-img-save-button').addEventListener('click', this.
 
 /***/ }),
 
-/***/ 23:
+/***/ 4:
 /*!**************************************************!*\
   !*** multi ./resources/js/coreui/media-cropp.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/coreui/media-cropp.js */"./resources/js/coreui/media-cropp.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\coreui\media-cropp.js */"./resources/js/coreui/media-cropp.js");
 
 
 /***/ })

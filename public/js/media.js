@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -256,14 +256,14 @@ self.showCard('file-info-card');
 
 /***/ }),
 
-/***/ 22:
+/***/ 3:
 /*!********************************************!*\
   !*** multi ./resources/js/coreui/media.js ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/coreui/media.js */"./resources/js/coreui/media.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\coreui\media.js */"./resources/js/coreui/media.js");
 
 
 /***/ })

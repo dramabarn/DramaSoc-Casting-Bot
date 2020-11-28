@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -146,14 +146,14 @@ document.getElementById("type").onchange = function () {
 
 /***/ }),
 
-/***/ 20:
+/***/ 1:
 /*!**************************************************!*\
   !*** multi ./resources/js/coreui/menu-create.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/coreui/menu-create.js */"./resources/js/coreui/menu-create.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
 
 
 /***/ })

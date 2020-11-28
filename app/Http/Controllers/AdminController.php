@@ -33,10 +33,11 @@ class AdminController extends Controller
 
         return view("admin.castingMeeting",
             [
-                'productions'=>$productions,
-                'productionchoices'=>$productionchoices,
-                'casted'=>$casted,
-                'freeCast'=>$freeCast
+                'productions'=> $productions,
+                'productionchoices'=> $productionchoices,
+                'casted'=> $casted,
+                'freeCast'=> $freeCast,
+                'sharing'=> $sharing
             ]);
     }
 
@@ -159,7 +160,6 @@ class AdminController extends Controller
             $position++;
 
         }
-
         return $WAITING_ON;
     }
 
@@ -170,11 +170,8 @@ class AdminController extends Controller
         $casts = Choices::all();
         $roles = ActorRoles::all();
         $shows = Shows::all();
-        $castings = $casts->where('casted', False);
-
+        $castings = $casts->where('casted', "0");
         $SHARING_PROBLEMS = array();
-        //First off get the weeks of the plays
-
 
         foreach($castings as $casting) {
             $castShow = $roles->where('id',$casting['role_name'])->pluck('show');
@@ -200,8 +197,15 @@ class AdminController extends Controller
 
                 }
                 if($share_cast){
-                    array_push($SHARING_PROBLEMS, $casting);
-                    array_push($SHARING_PROBLEMS, $others);
+                    $data = [];
+                    $data['name'] = Actors::where('id', $casting['1st_choice'])->first()->name;
+                    $data['phone'] = Actors::where('id', $casting['1st_choice'])->first()->phone;
+                    $data['firstshow'] = $shows->whereIn('id',$castShow)->first()->name;
+                    $data['firstrole'] = $roles->where('id',$casting['role_name'])->first()->role_name;
+                    $data['secondshow'] = $shows->whereIn('id',$otherShow)->first()->name;
+                    $data['secondrole'] = $roles->where('id',$others['role_name'])->first()->role_name;
+                    dd($data);
+                    array_push($SHARING_PROBLEMS, $data);
                 }
             }
         }
