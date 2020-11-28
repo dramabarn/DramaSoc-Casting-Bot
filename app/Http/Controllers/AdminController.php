@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Models\ActorRoles;
 use App\Models\Actors;
 use App\Models\Choices;
 use App\Models\Productions;
 use App\Models\Shows;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Commands\Show;
 
 class AdminController extends Controller
@@ -249,9 +252,48 @@ class AdminController extends Controller
         return $deadlock;
     }
 
+    public function addProduction(Request $request){
+
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'password'=>'required',
+            'email' => 'required',
+            'week' => 'required',
+            'type' => 'required',
+        ]);
+
+        $user =  User::create([
+            'name' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->assignRole('user');
+
+        $show = new Shows();
+        $show->name = $request->name;
+        $show->week = $request->week;
+        $show->type = $request->type;
+
+        $show->save();
+
+        $production = new Productions();
+        $production->show_id = $show->id;
+        $production->user_id = $user->id;
+        $production->save();
+
+        return response()->json([
+            'message' => 'Successfully created Production!',
+            'id' => $show->id
+        ], 201);    }
+
 
     public function add(){
-        return view("admin.addPlay");
+        $productions = Shows::all();
+
+        return view("admin.addPlay",
+        [            'productions'=>$productions,
+        ]);
     }
 
 
