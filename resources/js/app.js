@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import swal from 'sweetalert2';
+window.Swal = swal;
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,6 +25,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('enter-cast', require('./components/casting/enterCast.vue').default);
 Vue.component('list-cast', require('./components/casting/listCast.vue').default);
 Vue.component('enter-role', require('./components/casting/addRole.vue').default);
+Vue.component('list-roles', require('./components/casting/listRole.vue').default);
 Vue.component('list-people', require('./components/admin/listPeople.vue').default);
 Vue.component('add-play', require('./components/admin/addPlay.vue').default);
 Vue.component('view-productions', require('./components/admin/viewProductions.vue').default);

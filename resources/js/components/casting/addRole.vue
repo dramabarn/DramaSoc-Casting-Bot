@@ -64,18 +64,17 @@ export default {
             let data = {
                 name: this.name,
             }
-            console.log(data)
 
-            axios.post(`cast/addrole`, data)
+            axios.post(`/cast/addrole`, data)
                 .then(response => {
                     this.errors = {}
                     this.submitting = false
                     Swal.fire({
-                        title: 'Production Added!',
+                        title: 'Role Added!',
                         type: 'success',
                         confirmButtonText: 'OK',
                     }).then((result) => {
-                            window.location.href = "cast/addrole"
+                            window.location.href = "/cast/addrole"
                         }
                     )
                 }).catch(error => {

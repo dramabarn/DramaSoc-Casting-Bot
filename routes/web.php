@@ -18,6 +18,7 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
     Route::get('cast/choices', 'Cast@choices');
     Route::get('cast/enter', 'Cast@enter');
     Route::get('cast/addrole', 'Cast@addRole');
+    Route::post('cast/addrole', 'Cast@storeRole');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
