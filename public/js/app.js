@@ -37956,7 +37956,12 @@ var render = function() {
                   _vm._v(
                     _vm._s(conflict.firstshow) +
                       " - " +
-                      _vm._s(conflict.firstrole)
+                      _vm._s(conflict.firstrole) +
+                      " | " +
+                      _vm._s(conflict.firsttype) +
+                      " Week " +
+                      _vm._s(conflict.firstweek) +
+                      " "
                   )
                 ]),
                 _vm._v(" "),
@@ -37964,7 +37969,11 @@ var render = function() {
                   _vm._v(
                     _vm._s(conflict.secondshow) +
                       " - " +
-                      _vm._s(conflict.secondrole)
+                      _vm._s(conflict.secondrole) +
+                      " | " +
+                      _vm._s(conflict.secondtype) +
+                      " Week " +
+                      _vm._s(conflict.secondweek)
                   )
                 ])
               ])
@@ -51757,9 +51766,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\John\Documents\GitHub\DramaSoc-Casting-Bot\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/nathan/Developer/DramaSoc-Casting-Bot/resources/sass/style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

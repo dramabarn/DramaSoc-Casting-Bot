@@ -18,8 +18,8 @@
                         <tr v-for="conflict in productionconflicts">
                             <td>{{ conflict.name }}</td>
                             <td>{{ conflict.phone }}</td>
-                            <td>{{ conflict.firstshow }} - {{conflict.firstrole }}</td>
-                            <td>{{ conflict.secondshow }} - {{conflict.secondrole }}</td>
+                            <td>{{ conflict.firstshow }} - {{conflict.firstrole }} | {{conflict.firsttype }} Week {{conflict.firstweek }} </td>
+                            <td>{{ conflict.secondshow }} - {{conflict.secondrole }} | {{conflict.secondtype }} Week {{conflict.secondweek }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,7 +46,7 @@ export default {
     methods: {
 
         make_cast(person, role) {
-            
+
         }
 
     }
