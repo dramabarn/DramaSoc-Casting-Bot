@@ -37831,7 +37831,15 @@ var render = function() {
             "tbody",
             _vm._l(_vm.castable, function(choice) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(choice.play))]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(choice.play) +
+                      " | " +
+                      _vm._s(choice.type) +
+                      " " +
+                      _vm._s(choice.week)
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.role))]),
                 _vm._v(" "),
@@ -38380,7 +38388,15 @@ var render = function() {
             "tbody",
             _vm._l(_vm.productionchoices, function(choice) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(choice.show))]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(choice.show) +
+                      " | " +
+                      _vm._s(choice.type) +
+                      " " +
+                      _vm._s(choice.week)
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.role))]),
                 _vm._v(" "),

@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="choice in productionchoices">
-                        <td>{{ choice.show }}</td>
+                        <td>{{ choice.show }} | {{ choice.type }} {{ choice.week}}</td>
                         <td>{{ choice.role }}</td>
                         <td>{{ choice.first }} </td>
                         <td><button type="button" class="btn btn-danger" @click="make_cast(choice.firstid)"><span class="cil-trash btn-icon mr-2"></span></button></td>
