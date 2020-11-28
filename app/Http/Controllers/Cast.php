@@ -75,7 +75,22 @@ class Cast extends Controller
     }
 
     public function addRole(){
-        return view("user.addRole");
+        $you = auth()->user();
+        $data = [];
+        //get user's production, then the roles relevant to that production, then the choices relevant to those roles
+        $production = Productions::where('user_id',$you->id)->first()->show_id;
+        $productionRoles = ActorRoles::where('show',$production)->pluck('role_name');
+        //change array formatting so keys are usable in vue (numbers are invalid)
+        foreach ($productionRoles as $role){
+            $item;
+            //this shit needs validation
+            $item['name'] = $role;
+            array_push($data,$item);
+        }
+
+        return view("user.addRole",[
+            'roles' => $data,
+        ]);
     }
 
     /**
@@ -95,7 +110,7 @@ class Cast extends Controller
 
         $role = new ActorRoles();
 
-        $role->name = $request->name;
+        $role->role_name = $request->name;
         $role->show = $production;
 
         $role->save();
