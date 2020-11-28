@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActorRoles;
 use App\Models\Actors;
 use App\Models\Choices;
+use App\models\Shows;
 use App\Models\Productions;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,24 @@ class Cast extends Controller
     public function index()
     {
         $you = auth()->user();
-        return view("user.home", [
+        $showInfo =[];
+        $production = Productions::where('user_id',$you->id)->first();
+        if (!empty($production)){
+            $show = Shows::where('id', $production->show_id)->first();
+            $showInfo['hasShow'] = true;
+            $showInfo['name'] = $show->name;
+            $showInfo['type'] = $show->type;
+            $showInfo['week'] = $show->week;
+            $showInfo['roles'] = "-1";
+
+            $choices = $this->getChoiceData();
+        } else {
+            $showInfo['hasShow'] = false;
+        }
+        return view("user.home",[
             'username' => $you->name,
+            'productionChoices' => $choices,
+            'showinfo' => $showInfo,
         ]);
     }
 
