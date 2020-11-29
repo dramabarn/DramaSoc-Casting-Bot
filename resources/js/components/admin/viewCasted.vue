@@ -15,9 +15,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="choice in casted">
-                        <td>{{ choice.show }}</td>
+                        <td>{{ choice.show }} | {{ choice.type }}{{ choice.week }}</td>
                         <td>{{ choice.role }}</td>
-                        <td>{{ choice.name }}</td>
+                        <td>{{ choice.first }}</td>
                     </tr>
                     </tbody>
                 </table>
