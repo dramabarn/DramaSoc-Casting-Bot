@@ -63,24 +63,16 @@ class AdminController extends Controller
             $item['week'] = $shows->where('id',$showId)->first()->week;
             $item['type'] = $shows->where('id',$showId)->first()->type;
             $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
+            $item['castId'] = $choice['id'];
 
             $actor = Actors::where('id',$choice['1st_choice'])->first();
             $item['first'] = !empty($actor->name) ? $actor->name:'';
 
-            $actor = Actors::where('id',$choice['1st_choice'])->first();
-            $item['firstid'] = !empty($actor->id) ? $actor->id:'';
-
             $actor = Actors::where('id',$choice['2nd_choice'])->first();
             $item['second'] = !empty($actor->name) ? $actor->name:'';
 
-            $actor = Actors::where('id',$choice['2nd_choice'])->first();
-            $item['secondid'] = !empty($actor->id) ? $actor->id:'';
-
             $actor = Actors::where('id',$choice['3rd_choice'])->first();
             $item['third'] = !empty($actor->name) ? $actor->name:'';
-
-            $actor = Actors::where('id',$choice['3rd_choice'])->first();
-            $item['thirdid'] = !empty($actor->id) ? $actor->id:'';
 
             array_push($data,$item);
         }
@@ -89,49 +81,23 @@ class AdminController extends Controller
     }
 
     public function deleteChoice(Request $request){
-        $role_id = $request->
-
-        $role = Choices::where('id', $role_id)->firstOrFail();
-
-
+        // This is a destructive function - the castings are removed from the database!
+        $cast_id = $request->cast_id;
+        $choice = $request->choice;
         if($choice == 3){
-                //Do Nothing, since it doesn't affect the others
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('third_choice'=>0));
+            //just remove, since it doesn't affect the others
+            Choices::where('id', $cast_id)->update(['3rd_choice'=>null]);
 
-            }else if($choice == 2){
-                //Set the third choice as second choice.
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('second_choice'=>$CASTING_CHOICES['third_choice']));
-
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('third_choice'=>0));
-
-            }else if($choice == 1){
-                //Set the first choice to second, and second to third an third to 0
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('first_choice'=>$CASTING_CHOICES['second_choice']));
-
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('second_choice'=>$CASTING_CHOICES['third_choice']));
-
-                $this->db->where('casting_id',$casting);
-                $this->db->update('casting',array('third_choice'=>0));
-
-            }
-
-            $this->db->select("*");
-            $this->db->from('casting');
-            $this->db->where('casting_id',$casting);
-            $query = $this->db->get();
-            $CASTING_CHOICES = $query->row_array();
-
-            if(($CASTING_CHOICES['first_choice'] == 0) && ($CASTING_CHOICES['second_choice'] == 0) && ($CASTING_CHOICES['third_choice'] == 0)){
-                //Delete the whole row
-                $this->db->where('casting_id',$casting);
-                $this->db->delete('casting');
-            }
-
+        }else if($choice == 2){
+            //Set the second choice as third choice and third choice to Null.
+            $third = Choices::where('id', $cast_id)->firstOrFail()['3rd_choice'];
+            Choices::where('id', $cast_id)->update(['2nd_choice'=>$third, '3rd_choice'=>null]);
+        }else if($choice == 1){
+            //Set the first choice to second, and second to third an third to null
+            $second = Choices::where('id', $cast_id)->firstOrFail()['2nd_choice'];
+            $third = Choices::where('id', $cast_id)->firstOrFail()['3rd_choice'];
+            Choices::where('id', $cast_id)->update(['1st_choice'=> $second,'2nd_choice'=>$third, '3rd_choice'=>null]);
+        }
     }
 
     private function getCastedRoles(){

@@ -20,14 +20,14 @@
                     </thead>
                     <tbody>
                     <tr v-for="choice in productionchoices">
-                        <td>{{ choice.show }} | {{ choice.type }} {{ choice.week}}</td>
+                        <td>{{ choice.show }} | {{ choice.type }} Week {{ choice.week}}</td>
                         <td>{{ choice.role }}</td>
                         <td>{{ choice.first }} </td>
-                        <td><button type="button" class="btn btn-danger" @click="make_cast(choice.firstid)"><span class="cil-trash btn-icon mr-2"></span></button></td>
+                        <td><button v-if="choice.first != ''" type="button" class="btn btn-danger" @click="make_cast(choice.castId, 1)"><span class="cil-trash btn-icon mr-2"></span></button></td>
                         <td>{{ choice.second }}</td>
-                        <td><button type="button" class="btn btn-danger" @click="make_cast(choice.secondid)"><span class="cil-trash btn-icon mr-2"></span></button></td>
+                        <td><button v-if="choice.second != ''" type="button" class="btn btn-danger" @click="make_cast(choice.castId, 2)"><span class="cil-trash btn-icon mr-2"></span></button></td>
                         <td>{{ choice.third }}</td>
-                        <td><button type="button" class="btn btn-danger" @click="make_cast(choice.thirdid)"><span class="cil-trash btn-icon mr-2"></span></button></td>
+                        <td><button type="button" v-if="choice.third != ''" class="btn btn-danger" @click="make_cast(choice.castId, 3)"><span class="cil-trash btn-icon mr-2"></span></button></td>
                     </tr>
                     </tbody>
                 </table>
@@ -53,12 +53,14 @@ export default {
 
     methods: {
 
-        make_cast(id) {
+        make_cast(id, choice) {
             this.submitting = true
             console.log(id)
+            console.log(choice)
 
             let data = {
-                role_id: id,
+                cast_id: id,
+                choice: choice,
             }
 
             axios.post(`/admin/remove`, data)

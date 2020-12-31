@@ -2539,13 +2539,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    make_cast: function make_cast(id) {
+    make_cast: function make_cast(id, choice) {
       var _this = this;
 
       this.submitting = true;
       console.log(id);
+      console.log(choice);
       var data = {
-        role_id: id
+        cast_id: id,
+        choice: choice
       };
       axios.post("/admin/remove", data).then(function (response) {
         _this.errors = {};
@@ -38400,7 +38402,7 @@ var render = function() {
                     _vm._s(choice.show) +
                       " | " +
                       _vm._s(choice.type) +
-                      " " +
+                      " Week " +
                       _vm._s(choice.week)
                   )
                 ]),
@@ -38410,55 +38412,61 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(choice.first) + " ")]),
                 _vm._v(" "),
                 _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.make_cast(choice.firstid)
-                        }
-                      }
-                    },
-                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
-                  )
+                  choice.first != ""
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.make_cast(choice.castId, 1)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                      )
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.second))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.make_cast(choice.secondid)
-                        }
-                      }
-                    },
-                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
-                  )
+                  choice.second != ""
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.make_cast(choice.castId, 2)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                      )
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(choice.third))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.make_cast(choice.thirdid)
-                        }
-                      }
-                    },
-                    [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
-                  )
+                  choice.third != ""
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.make_cast(choice.castId, 3)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "cil-trash btn-icon mr-2" })]
+                      )
+                    : _vm._e()
                 ])
               ])
             }),
