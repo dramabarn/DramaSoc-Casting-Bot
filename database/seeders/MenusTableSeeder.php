@@ -125,7 +125,7 @@ class MenusTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         /* Get roles */
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
         $this->userRole = Role::where('name', '=', 'user' )->first();
@@ -137,11 +137,10 @@ class MenusTableSeeder extends Seeder
         $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
         $this->insertLink('user,admin', 'Log Out', '/logout', 'cil-account-logout');
 
-        //this should probs be only users, as admin will not have a show
-        $this->insertTitle('user,admin', 'Casting');
-        $this->insertLink('user,admin', 'Add role', '/cast/addrole', 'cil-plus');
-        $this->insertLink('user,admin', 'Enter Casting Choice', '/cast/enter', 'cil-pencil ');
-        $this->insertLink('user,admin', 'View Choices', '/cast/choices', 'cil-list');
+        $this->insertTitle('user', 'Casting');
+        $this->insertLink('user', 'Add Role', '/cast/addrole', 'cil-plus');
+        $this->insertLink('user', 'Enter Casting Choice', '/cast/enter', 'cil-pencil ');
+        $this->insertLink('user', 'View Choices', '/cast/choices', 'cil-list');
 
         $this->insertTitle('admin', 'Casting Meeting');
         $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-chat-bubble');
