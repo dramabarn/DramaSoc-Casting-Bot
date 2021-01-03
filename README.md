@@ -3,10 +3,10 @@
 
 ## Table of Contents
 
-* [Installation](#installation)
+* [Installation](#Installation)
 * [Usage](#Usage)
 * [Authors](#Authors)
-* [Copyright](#Copyright and license)
+* [Copyright](#Copyright%20and%20License)
 
 
 ## Installation
@@ -158,7 +158,7 @@ This user has roles: _user_ and _admin_
 
 Interface based on [Core UI](https://coreui.io/)
 
-## Copyright and license
+## Copyright and License
 
 Copyright 2020 York DramaSoc. CORE UI Code released under [the MIT license](https://github.com/coreui/coreui-free-laravel-admin-template/blob/master/LICENSE).
 
