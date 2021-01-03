@@ -8,12 +8,12 @@
 * [Authors](#Authors)
 * [Copyright](#Copyright%20and%20License)
 
-
+---
 ## Installation
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/coreui/coreui-free-laravel-admin-template.git my-project
+$ git clone https://github.com/dramabarn/DramaSoc-Casting-Bot.git my-project
 
 # go into app's directory
 $ cd my-project
@@ -25,11 +25,10 @@ $ composer install
 $ npm install
 
 ```
-
-### If you choice to use SQLite
+### Database Setup
+#### SQLite
 
 ``` bash
-
 # create database
 $ touch database/database.sqlite
 ```
@@ -47,7 +46,7 @@ To this:
 * DB_CONNECTION=sqlite
 * DB_DATABASE=/path_to_your_project/database/database.sqlite
 
-### If you choice to use PostgreSQL
+#### PostgreSQL
 
 1. Install PostgreSQL
 
@@ -88,7 +87,7 @@ To this:
 * DB_USERNAME=laravel
 * DB_PASSWORD=password
 
-### If you choice to use MySQL
+#### MySQL
 
 Copy file ".env.example", and change its name to ".env".
 Then in file ".env" complete this database configuration:
@@ -101,15 +100,16 @@ Then in file ".env" complete this database configuration:
 
 ### Set APP_URL
 
-> If your project url looks like: example.com/sub-folder 
+If your project url looks like 
+``` example.com/sub-folder``` 
 Then go to `my-project/.env`
-And modify this line:
+And modify the line:
 
-* APP_URL = 
+* `APP_URL = `
 
 To make it look like this:
 
-* APP_URL = http://example.com/sub-folder
+* `APP_URL = http://example.com/sub-folder`
 
 
 ### Next step
@@ -128,15 +128,12 @@ $ npm run dev
 # and repeat generate mixing
 $ npm run dev
 ```
-
+---
 ## Usage
 
 ``` bash
 # start local server
 $ php artisan serve
-
-# test
-$ php vendor/bin/phpunit
 ```
 
 Open your browser with address: [localhost:8000](localhost:8000)  
@@ -147,7 +144,7 @@ Click "Login" on sidebar menu and log in with credentials:
 
 This user has roles: _user_ and _admin_
 
-
+---
 ## Authors
 
 **Nathan Billis**
@@ -155,6 +152,7 @@ This user has roles: _user_ and _admin_
 **John Cherry**
 
 ## Acknowledgments
+Based on 'CastingBot V2' by **Jon Derrick** and the original by **Stephen Hutt**
 
 Interface based on [Core UI](https://coreui.io/)
 
