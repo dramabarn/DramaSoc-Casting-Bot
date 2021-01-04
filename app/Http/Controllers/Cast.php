@@ -7,6 +7,7 @@ use App\Models\Actors;
 use App\Models\Choices;
 use App\Models\Shows;
 use App\Models\Productions;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class Cast extends Controller
@@ -20,7 +21,8 @@ class Cast extends Controller
     public function index()
     {
         $you = auth()->user();
-        $showInfo =[];
+        $showInfo = [];
+        $showInfo['admin'] = in_array('admin', $you->getRoleNames()->all());
         $production = Productions::where('user_id',$you->id)->first();
         if (!empty($production)){
             $show = Shows::where('id', $production->show_id)->first();

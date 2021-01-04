@@ -18,16 +18,18 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['get.menu', 'auth']], function () {
+    //General Routes
     Route::get('/', 'Cast@index')->name('home');
-    Route::get('cast/choices', 'Cast@choices');
-    Route::get('cast/enter', 'Cast@enter');
-    Route::get('cast/addrole', 'Cast@addRole');
-    Route::post('cast/enter', 'Cast@storeChoice');
-    Route::post('cast/addrole', 'Cast@storeRole');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-
+    //Casting Routes
+    Route::group(['middleware' => ['show']], function () {
+        Route::get('cast/choices', 'Cast@choices');
+        Route::get('cast/enter', 'Cast@enter');
+        Route::get('cast/addrole', 'Cast@addRole');
+        Route::post('cast/enter', 'Cast@storeChoice');
+        Route::post('cast/addrole', 'Cast@storeRole');
+    } );
     Route::resources(['cast' => 'Cast']);
 
     Route::group(['middleware' => ['role:admin']], function () {
