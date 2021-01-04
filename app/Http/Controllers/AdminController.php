@@ -160,6 +160,8 @@ class AdminController extends Controller
         return $SINGLE_CASTS;
     }
 
+    //TODO: convert this function
+    //Will fix https://github.com/dramabarn/DramaSoc-Casting-Bot/issues/14
     private function getWaitingOn(){
         $casts = Choices::all();
         $castings = $casts->where('casted', False);
@@ -263,7 +265,7 @@ class AdminController extends Controller
 
             foreach ($castings as $others) {
                 $share_cast = false;
-                // cancles me out
+                // cancels me out
                 $otherShow = $roles->where('id',$others['role_name'])->pluck('show');
                 $otherWeek = $shows->whereIn('id',$otherShow)->first()->week;
 
@@ -338,6 +340,12 @@ class AdminController extends Controller
 
     public function add(){
         $productions = Shows::all();
+        foreach ($productions as $show){
+            $prod = Productions::where('show_id', $show->id)->first();
+            $producer = User::where('id', $prod->user_id)->first();
+            $show->prod = $producer->name;
+            $show->email = $producer->email;
+        }
 
         return view("admin.addPlay",
         [            'productions'=>$productions,
@@ -347,6 +355,12 @@ class AdminController extends Controller
 
     public function view(){
         $productions = Shows::all();
+        foreach ($productions as $show){
+            $prod = Productions::where('show_id', $show->id)->first();
+            $producer = User::where('id', $prod->user_id)->first();
+            $show->prod = $producer->name;
+            $show->email = $producer->email;
+        }
 
         return view("admin.viewProductions",
         [            'productions'=>$productions,

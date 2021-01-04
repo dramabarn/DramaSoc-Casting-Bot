@@ -11,6 +11,7 @@
                         <th>Show</th>
                         <th>Type</th>
                         <th>Week</th>
+                        <th>Producer</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -18,6 +19,7 @@
                         <td>{{ show.name }}</td>
                         <td>{{ show.type }}</td>
                         <td>{{ show.week }}</td>
+                        <td>{{ show.prod }} ( <a :href="`mailto:${show.email}`">{{ show.email }}</a> )</td>
                     </tr>
                     </tbody>
                 </table>

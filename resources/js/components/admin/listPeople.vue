@@ -11,7 +11,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -19,9 +18,6 @@
                         <td>{{ person.name }}</td>
                         <td>{{ person.email }}@york.ac.uk</td>
                         <td>{{ person.phone }}</td>
-                        <td><button type="button" class="btn btn-square btn-danger"><i class="cil-trash"></i>
-                            Delete {{person.id}}</button>
-                        </td>
                     </tr>
                     </tbody>
                 </table>

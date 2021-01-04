@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <?php }
-                if ($showinfo['admin']){ //this assumes that if you don't have a show, you're an Admin - safe because laravel checks for each route (Hopefully) ?>
+                if ($showinfo['admin']){?>
                 <div class="row">
                     <div class="col-sm">
                         <a href="{{route('castingMeeting')}}">

@@ -2266,10 +2266,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     people: {
@@ -2442,6 +2438,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -38040,23 +38038,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(person.email) + "@york.ac.uk")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(person.phone))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-square btn-danger",
-                      attrs: { type: "button" }
-                    },
-                    [
-                      _c("i", { staticClass: "cil-trash" }),
-                      _vm._v(
-                        "\n                        Delete " + _vm._s(person.id)
-                      )
-                    ]
-                  )
-                ])
+                _c("td", [_vm._v(_vm._s(person.phone))])
               ])
             }),
             0
@@ -38085,9 +38067,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Delete")])
+        _c("th", [_vm._v("Phone")])
       ])
     ])
   }
@@ -38330,7 +38310,15 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(show.type))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(show.week))])
+                _c("td", [_vm._v(_vm._s(show.week))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(show.prod) + " ( "),
+                  _c("a", { attrs: { href: "mailto:" + show.email } }, [
+                    _vm._v(_vm._s(show.email))
+                  ]),
+                  _vm._v(" )")
+                ])
               ])
             }),
             0
@@ -38359,7 +38347,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Type")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Week")])
+        _c("th", [_vm._v("Week")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Producer")])
       ])
     ])
   }
