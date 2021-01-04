@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menus;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -126,6 +127,10 @@ class MenusTableSeeder extends Seeder
      */
     public function run()
     {
+        //Truncate Tables
+        DB::table('menus')->truncate();
+        DB::table('menulist')->truncate();
+        DB::table('menu_role')->truncate();
         /* Get roles */
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
         $this->userRole = Role::where('name', '=', 'user' )->first();
