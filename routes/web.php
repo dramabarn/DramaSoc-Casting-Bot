@@ -20,6 +20,7 @@ Auth::routes();
 Route::group(['middleware' => ['get.menu', 'auth']], function () {
     //General Routes
     Route::get('/', 'Cast@index')->name('home');
+    Route::get('/home', 'Cast@index');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     //Casting Routes
