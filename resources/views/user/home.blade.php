@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <a href="/cast/addrole">
-                            <div  class="card text-white bg-primary">
+                            <div  class="card text-white bg-primary text-center">
                                 <div class="card-body">
                                     <div>Add Role</div>
                                 </div>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="/cast/choices">
-                            <div  class="card text-white bg-primary">
+                            <div  class="card text-white bg-primary text-center">
                                 <div class="card-body">
                                     <div>View my Choices</div>
                                 </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="/cast/enter">
-                            <div  class="card text-white bg-primary">
+                            <div  class="card text-white bg-primary text-center">
                                 <div class="card-body">
                                     <div>Enter Casting Choice</div>
                                 </div>
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <a href="{{route('castingMeeting')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>Casting Meeting</div>
                                 </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('addShow')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>Add Shows</div>
                                 </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('viewProductions')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>View Shows</div>
                                 </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('viewPeople')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>People List</div>
                                 </div>

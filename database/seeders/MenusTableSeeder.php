@@ -147,13 +147,12 @@ class MenusTableSeeder extends Seeder
         $this->insertLink('user', 'Enter Casting Choice', '/cast/enter', 'cil-pencil ');
         $this->insertLink('user', 'View Choices', '/cast/choices', 'cil-list');
 
-        $this->insertTitle('admin', 'Casting Meeting');
-        $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-chat-bubble');
-
         $this->insertTitle('admin', 'Admin');
+        $this->insertLink('admin', 'Admin', '/admin/', 'cil-library');
         $this->insertLink('admin', 'Add Show', '/admin/add', 'cil-plus');
         $this->insertLink('admin', 'View Shows', '/admin/view', 'cil-list');
         $this->insertLink('admin', 'View Users', '/admin/people', 'cil-people');
+        $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-chat-bubble');
 
         /* Create top menu */
         DB::table('menulist')->insert([

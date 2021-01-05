@@ -10,6 +10,7 @@ use App\Models\Productions;
 use App\Models\Shows;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Commands\Show;
 
@@ -100,6 +101,18 @@ class AdminController extends Controller
         }
     }
 
+    /**
+     * Truncates relevant tables
+     * Very destructive operation!
+     * @param Request $request
+     */
+    public function deleteAll(Request $request){
+        $tables = ['actor_roles', 'actors', 'choices', 'productions', 'shows'];
+        foreach ($tables as $table){
+            DB::table($table)->truncate();
+        }
+    }
+
     private function getCastedRoles(){
         $casts = Choices::all();
         $roles = ActorRoles::all();
@@ -124,7 +137,6 @@ class AdminController extends Controller
         $SINGLE_CASTS = array();
 
         //FIRSTLY, WE NEED TO CHECK FOR NON-CONFLICTS (only looking at 1st choices)
-        $over_1 = true;
         foreach($castings as $casting){
             $SINGLE = true;
             foreach($castings as $others){
@@ -153,7 +165,6 @@ class AdminController extends Controller
                 $item['person'] = Actors::where('id',$casting['1st_choice'])->first()->name;
                 $item['phone'] = Actors::where('id',$casting['1st_choice'])->first()->phone;
                 array_push($SINGLE_CASTS, $item);
-                $over_1 = true;
             }
         }
 

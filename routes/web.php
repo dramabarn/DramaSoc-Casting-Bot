@@ -41,6 +41,7 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
         Route::post('admin/add', 'AdminController@addProduction');
         Route::post('admin/cast-person', 'AdminController@castPerson');
         Route::post('admin/remove', 'AdminController@deleteChoice');
+        Route::post('admin/endSeason', 'AdminController@deleteAll');
     });
 
 

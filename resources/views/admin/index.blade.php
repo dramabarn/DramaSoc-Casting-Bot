@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <a href="{{route('castingMeeting')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>Casting Meeting</div>
                                 </div>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('addShow')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>Add Shows</div>
                                 </div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('viewProductions')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>View Shows</div>
                                 </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-sm">
                         <a href="{{route('viewPeople')}}">
-                            <div  class="card text-white bg-dark">
+                            <div  class="card text-white bg-dark text-center">
                                 <div class="card-body">
                                     <div>People List</div>
                                 </div>
@@ -45,7 +45,9 @@
                         </a>
                     </div>
                 </div>
+                <remove-all></remove-all>
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
