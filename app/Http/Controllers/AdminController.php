@@ -111,6 +111,7 @@ class AdminController extends Controller
         foreach ($tables as $table){
             DB::table($table)->truncate();
         }
+        $delete = DB::delete('delete from users where menuroles not like "%admin%"');
     }
 
     private function getCastedRoles(){
