@@ -31,7 +31,7 @@ export default {
 
     props:{
         people:{
-            type: Object,
+            type: Array,
         },
     }
 }

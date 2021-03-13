@@ -33,7 +33,7 @@ export default {
 
     props:{
         deadlocks:{
-            type: Object,
+            type: Array,
         },
     }
 }

@@ -31,7 +31,7 @@ export default {
 
     props:{
         casted:{
-            type: Object,
+            type: Array,
         },
     }
 }

@@ -190,7 +190,6 @@ class Cast extends Controller
             $item['name'] = $role;
             array_push($data, $item);
         }
-
         return view("user.addRole", [
             'roles' => $data,
         ]);

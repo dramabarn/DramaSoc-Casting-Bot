@@ -351,31 +351,45 @@ class AdminController extends Controller
 
 
     public function add(){
-        $productions = Shows::all();
-        foreach ($productions as $show){
-            $prod = Productions::where('show_id', $show->id)->first();
-            $producer = User::where('id', $prod->user_id)->first();
-            $show->prod = $producer->name;
-            $show->email = $producer->email;
-        }
-
-        return view("admin.addPlay",
-        [            'productions'=>$productions,
+        $productions = Shows::getAdditionaldata();
+        return view("admin.addPlay", [
+            'productions'=>$productions,
         ]);
     }
 
 
     public function view(){
-        $productions = Shows::all();
-        foreach ($productions as $show){
-            $prod = Productions::where('show_id', $show->id)->first();
-            $producer = User::where('id', $prod->user_id)->first();
-            $show->prod = $producer->name;
-            $show->email = $producer->email;
+        $productions = Shows::getAdditionaldata();
+        return view("admin.viewProductions", [
+            'productions'=>$productions,
+        ]);
+    }
+
+    public function viewSingle($id){
+        $production = Shows::getAdditionalData($id);
+        $productionRoles = ActorRoles::where('show', $id)->pluck('id');
+        $choices = Choices::whereIn('role_name', $productionRoles)->get();
+        //change array formatting so keys are usable in vue (numbers are invalid)
+        $data = [];
+        foreach ($choices as $choice) {
+            $item;
+
+            $item['role'] = ActorRoles::where('id', $choice['role_name'])->first()->role_name;
+
+            $actor = Actors::where('id', $choice['1st_choice'])->first();
+            $item['first'] = !empty($actor->name) ? $actor->name : '';
+
+            $actor = Actors::where('id', $choice['2nd_choice'])->first();
+            $item['second'] = !empty($actor->name) ? $actor->name : '';
+
+            $actor = Actors::where('id', $choice['3rd_choice'])->first();
+            $item['third'] = !empty($actor->name) ? $actor->name : '';
+            array_push($data, $item);
         }
 
-        return view("admin.viewProductions",
-        [            'productions'=>$productions,
+        return view("admin.viewSingle",[
+           'productions'=>$production,
+           'productionChoices'=>$data,
         ]);
     }
 

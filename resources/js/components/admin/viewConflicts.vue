@@ -36,7 +36,7 @@ export default {
 
     props:{
         productionconflicts:{
-            type: Object,
+            type: Array,
         },
     },
 

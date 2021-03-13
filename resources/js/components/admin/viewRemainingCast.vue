@@ -41,7 +41,7 @@ export default {
 
     props:{
         productionchoices:{
-            type: Object,
+            type: Array,
         },
     },
 

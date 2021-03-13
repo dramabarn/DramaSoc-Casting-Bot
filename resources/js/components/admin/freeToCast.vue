@@ -36,7 +36,7 @@ export default {
 
     props:{
         castable:{
-            type: Object,
+            type: Array,
         },
     },
 

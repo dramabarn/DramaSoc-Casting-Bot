@@ -12,14 +12,16 @@
                         <th>Type</th>
                         <th>Week</th>
                         <th>Producer</th>
+                        <th>Number of Roles</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="show in productions">
-                        <td>{{ show.name }}</td>
+                        <td><a :href="'view/' + show.id">{{ show.name }}</a></td>
                         <td>{{ show.type }}</td>
                         <td>{{ show.week }}</td>
                         <td>{{ show.prod }} ( <a :href="`mailto:${show.email}`">{{ show.email }}</a> )</td>
+                        <td>{{ show.roles }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -33,7 +35,7 @@ export default {
 
     props:{
         productions:{
-            type: Object,
+            type: Array,
         },
     }
 }
