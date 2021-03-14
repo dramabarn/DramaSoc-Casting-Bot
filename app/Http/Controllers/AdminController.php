@@ -206,7 +206,7 @@ class AdminController extends Controller
 
     public function getSharingCasts(){
         // What's the sharing period
-        $noSharingWeeks = 2;
+        $noSharingWeeks = 1;
 
         $casts = Choices::all();
         $roles = ActorRoles::all();
