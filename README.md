@@ -4,11 +4,11 @@
 
 ## Table of Contents
 
-* [Installation with Sail](#Installation%20with%20Sail)
-* [Installation without Laravel Sail](#Installation%20without%20Laravel%20Sail)
+* [Installation with Sail](#Installation-with-Sail)
+* [Installation without Laravel Sail](#Installation-without-Laravel-Sail)
 * [Usage](#Usage)
 * [Authors](#Authors)
-* [Copyright](#Copyright%20and%20License)
+* [Copyright](#Copyright-and-License)
 
 ---
 
