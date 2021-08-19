@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Productions;
+use Illuminate\Contracts\View\View;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -22,58 +23,15 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        $you = auth()->user();
         $users = User::all();
-        return view('dashboard.admin.usersList', compact('users', 'you'));
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $user = User::find($id);
-        return view('dashboard.admin.userShow', compact( 'user' ));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('dashboard.admin.userEditForm', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'name'       => 'required|min:1|max:256',
-            'email'      => 'required|email|max:256'
+        return view("admin.users", [
+            "people" => $users
         ]);
-        $user = User::find($id);
-        $user->name       = $request->input('name');
-        $user->email      = $request->input('email');
-        $user->save();
-        $request->session()->flash('message', 'Successfully updated user');
-        return redirect()->route('users.index');
     }
 
     /**
@@ -84,6 +42,14 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        //remove associated production
+        $prods = Productions::all();
+        $shows = Shows::all();
+        $thisProd = $prods->where('user_id', $id)->first();
+        $thisShow = $shows->where('id', $thisProd->show_id);
+        $thisShow->delete();
+        $thisProd->delete();
+
         $user = User::find($id);
         if($user){
             $user->delete();
