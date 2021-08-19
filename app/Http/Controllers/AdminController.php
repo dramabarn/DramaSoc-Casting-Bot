@@ -393,12 +393,20 @@ class AdminController extends Controller
         ]);
     }
 
-    public function people(){
+    public function actors(){
 
         $actors = Actors::all();
 
-        return view("admin.people",[
+        return view("admin.actors",[
             'people'=>$actors,
+        ]);
+    }
+
+    public function users(){
+        $users = User::all();
+
+        return view("admin.users", [
+            "people" => $users
         ]);
     }
 

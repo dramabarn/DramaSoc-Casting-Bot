@@ -151,7 +151,8 @@ class MenusTableSeeder extends Seeder
         $this->insertLink('admin', 'Admin', '/admin/', 'cil-library');
         $this->insertLink('admin', 'Add Show', '/admin/add', 'cil-plus');
         $this->insertLink('admin', 'View Shows', '/admin/view', 'cil-list');
-        $this->insertLink('admin', 'View Users', '/admin/people', 'cil-people');
+        $this->insertLink('admin', 'View Actors', '/admin/people', 'cil-people');
+        $this->insertLink('admin', 'View Users', '/admin/users', 'cil-user');
         $this->insertLink('admin', 'Casting Meeting', '/admin/meeting', 'cil-chat-bubble');
 
         /* Create top menu */

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Productions;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -84,6 +85,14 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        //remove associated production
+        $prods = Productions::all();
+        $shows = Shows::all();
+        $thisProd = $prods->where('user_id', $id)->first();
+        $thisShow = $shows->where('id', $thisProd->show_id);
+        $thisShow->delete();
+        $thisProd->delete();
+
         $user = User::find($id);
         if($user){
             $user->delete();

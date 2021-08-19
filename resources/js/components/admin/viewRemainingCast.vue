@@ -55,8 +55,6 @@ export default {
 
         make_cast(id, choice) {
             this.submitting = true
-            console.log(id)
-            console.log(choice)
 
             let data = {
                 cast_id: id,
