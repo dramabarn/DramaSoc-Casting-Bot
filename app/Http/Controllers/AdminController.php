@@ -245,7 +245,7 @@ class AdminController extends Controller
 
     public function deadlock(){
         // What's the sharing period
-        $noSharingWeeks = 2;
+        $noSharingWeeks = env('CASTINGBOT_SHARING_WEEKS', 2);
 
         $casts = Choices::all();
         $roles = ActorRoles::all();
