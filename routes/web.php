@@ -39,11 +39,13 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
         Route::get('admin/add', 'AdminController@add')->name('addShow');
         Route::get('admin/view', 'AdminController@view')->name('viewProductions');
         Route::get('admin/view/{id}', 'AdminController@viewSingle')->name('viewSingleProduction');
-        Route::get('admin/people', 'AdminController@people')->name('viewPeople');
+        Route::get('admin/people', 'AdminController@actors')->name('viewPeople');
+        Route::get('admin/users', 'AdminController@users')->name('viewUsers');
         Route::post('admin/add', 'AdminController@addProduction');
         Route::post('admin/cast-person', 'AdminController@castPerson');
         Route::post('admin/remove', 'AdminController@deleteChoice');
         Route::post('admin/endSeason', 'AdminController@deleteAll');
+        Route::post('admin/users/{id}/delete', 'UsersController@destroy');
     });
 
 

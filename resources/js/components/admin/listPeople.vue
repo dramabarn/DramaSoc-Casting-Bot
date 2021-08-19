@@ -2,7 +2,7 @@
     <div class="col">
         <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">People</h3>
+                <h3 class="card-title">Actors</h3>
             </div>
             <div class="card-body">
                 <table class="table table-responsive-sm">
@@ -16,7 +16,7 @@
                     <tbody>
                     <tr v-for="person in people">
                         <td>{{ person.name }}</td>
-                        <td>{{ person.email }}@york.ac.uk</td>
+                        <td>{{ person.email }}</td>
                         <td>{{ person.phone }}</td>
                     </tr>
                     </tbody>
