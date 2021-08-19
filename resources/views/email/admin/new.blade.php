@@ -4,7 +4,7 @@
     Someone has set up an account for you on Casting Bot.
     This is for your {{$showData['type']}}, {{$showData['show']}}, in week {{$showData['week']}}.
 
-    Casting Bot can be found at [{{ config('app.url') }}]({{ config('app.url') }})
+    Casting Bot can be found at {{ config('app.url') }}
     Your login information is:
     Username: {{ $showData['email'] }}
     Password: {{ $showData['password'] }}
