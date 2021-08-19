@@ -10,7 +10,7 @@ use App\Models\Productions;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class Cast extends Controller
+class CastController extends Controller
 {
     //
     public function __construct()
@@ -50,26 +50,7 @@ class Cast extends Controller
         $you = auth()->user();
         //get user's production, then the roles relevant to that production, then the choices relevant to those roles
         $production = Productions::where('user_id', $you->id)->first()->show_id;
-        $productionRoles = ActorRoles::where('show', $production)->pluck('id');
-        $choices = Choices::whereIn('role_name', $productionRoles)->get();
-        //change array formatting so keys are usable in vue (numbers are invalid)
-        $data = [];
-        foreach ($choices as $choice) {
-            $item;
-
-            $item['role'] = ActorRoles::where('id', $choice['role_name'])->first()->role_name;
-
-            $actor = Actors::where('id', $choice['1st_choice'])->first();
-            $item['first'] = !empty($actor->name) ? $actor->name : '';
-
-            $actor = Actors::where('id', $choice['2nd_choice'])->first();
-            $item['second'] = !empty($actor->name) ? $actor->name : '';
-
-            $actor = Actors::where('id', $choice['3rd_choice'])->first();
-            $item['third'] = !empty($actor->name) ? $actor->name : '';
-            array_push($data, $item);
-        }
-        return $data;
+        return ChoicesController::showChoices($production);
     }
 
     public function enter()
