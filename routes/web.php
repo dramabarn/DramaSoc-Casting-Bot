@@ -37,9 +37,9 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
         Route::get('admin', 'AdminController@index');
         Route::get('admin/meeting', 'AdminController@meeting')->name('castingMeeting');
         Route::get('admin/add', 'AdminController@add')->name('addShow');
-        Route::get('admin/view', 'AdminController@view')->name('viewProductions');
-        Route::get('admin/view/{id}', 'AdminController@viewSingle')->name('viewSingleProduction');
-        Route::get('admin/people', 'AdminController@actors')->name('viewPeople');
+        Route::get('admin/view', 'ShowsController@index')->name('viewProductions');
+        Route::get('admin/view/{id}', 'ShowsController@adminSingle')->name('viewSingleProduction');
+        Route::get('admin/people', 'ActorsController@index')->name('viewPeople');
         Route::get('admin/users', 'UsersController@index')->name('viewUsers');
         Route::post('admin/add', 'AdminController@addProduction');
         Route::post('admin/cast-person', 'AdminController@castPerson');

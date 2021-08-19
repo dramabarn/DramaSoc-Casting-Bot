@@ -10,11 +10,10 @@ use App\Models\Productions;
 use App\Models\Shows;
 use App\Models\User;
 use App\Notifications\ShowCreated;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Commands\Show;
 
 class AdminController extends Controller
 {
@@ -53,34 +52,15 @@ class AdminController extends Controller
             return response()->json($role);
     }
 
-    private function convertChoices($choices){
-        $shows = Shows::all();
-        //change array formatting so keys are usable in vue (numbers are invalid)
-        $data = [];
-        foreach ($choices as $choice){
-            $item;
-            $showId = ActorRoles::where('id',$choice['role_name'])->first()->show;
-            //this shit needs validation
-
-            $item['show'] = $shows->where('id',$showId)->first()->name;
-            $item['week'] = $shows->where('id',$showId)->first()->week;
-            $item['type'] = $shows->where('id',$showId)->first()->type;
-            $item['role'] = ActorRoles::where('id',$choice['role_name'])->first()->role_name;
-            $item['castId'] = $choice['id'];
-
-            $actor = Actors::where('id',$choice['1st_choice'])->first();
-            $item['first'] = !empty($actor->name) ? $actor->name:'';
-
-            $actor = Actors::where('id',$choice['2nd_choice'])->first();
-            $item['second'] = !empty($actor->name) ? $actor->name:'';
-
-            $actor = Actors::where('id',$choice['3rd_choice'])->first();
-            $item['third'] = !empty($actor->name) ? $actor->name:'';
-
-            array_push($data,$item);
-        }
-
-        return $data;
+    /**
+     * Convert choices to vue compatible array
+     * @param Collection $choices
+     * @return array
+     * @deprecated use function in ChoicesController
+     */
+    private function convertChoices(Collection $choices): array
+    {
+        return ChoicesController::convertChoices($choices, true);
     }
 
     public function deleteChoice(Request $request){
@@ -116,7 +96,8 @@ class AdminController extends Controller
         $delete = DB::delete('delete from users where menuroles not like "%admin%"');
     }
 
-    private function getCastedRoles(){
+    private function getCastedRoles(): array
+    {
         $casts = Choices::all();
         $roles = ActorRoles::all();
 
@@ -126,14 +107,16 @@ class AdminController extends Controller
         return $this->convertChoices($choices);
     }
 
-    private function getChoices(){
+    private function getChoices(): array
+    {
         $casts = Choices::all();
         $choices = $casts->where('casted', False)->sortBy("role_name");
 
         return $this->convertChoices($choices);
     }
 
-    private function getFreeToCast(){
+    private function getFreeToCast(): array
+    {
         $casts = Choices::all();
         $castings = $casts->where('casted', False);
         //we maintain 3 arrays - single casts, adjacent casts and sharing casts
@@ -366,58 +349,4 @@ class AdminController extends Controller
             'productions'=>$productions,
         ]);
     }
-
-
-    public function view(){
-        $productions = Shows::getAdditionaldata();
-        return view("admin.viewProductions", [
-            'productions'=>$productions,
-        ]);
-    }
-
-    public function viewSingle($id){
-        $production = Shows::getAdditionalData($id);
-        $productionRoles = ActorRoles::where('show', $id)->pluck('id');
-        $choices = Choices::whereIn('role_name', $productionRoles)->get();
-        //change array formatting so keys are usable in vue (numbers are invalid)
-        $data = [];
-        foreach ($choices as $choice) {
-            $item;
-
-            $item['role'] = ActorRoles::where('id', $choice['role_name'])->first()->role_name;
-
-            $actor = Actors::where('id', $choice['1st_choice'])->first();
-            $item['first'] = !empty($actor->name) ? $actor->name : '';
-
-            $actor = Actors::where('id', $choice['2nd_choice'])->first();
-            $item['second'] = !empty($actor->name) ? $actor->name : '';
-
-            $actor = Actors::where('id', $choice['3rd_choice'])->first();
-            $item['third'] = !empty($actor->name) ? $actor->name : '';
-            array_push($data, $item);
-        }
-
-        return view("admin.viewSingle",[
-           'productions'=>$production,
-           'productionChoices'=>$data,
-        ]);
-    }
-
-    public function actors(){
-
-        $actors = Actors::all();
-
-        return view("admin.actors",[
-            'people'=>$actors,
-        ]);
-    }
-
-    public function users(){
-        $users = User::all();
-
-        return view("admin.users", [
-            "people" => $users
-        ]);
-    }
-
 }
