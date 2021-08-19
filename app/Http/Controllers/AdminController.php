@@ -9,7 +9,9 @@ use App\Models\Choices;
 use App\Models\Productions;
 use App\Models\Shows;
 use App\Models\User;
+use App\Notifications\ShowCreated;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Commands\Show;
@@ -336,13 +338,21 @@ class AdminController extends Controller
         $show->name = $request->name;
         $show->week = $request->week;
         $show->type = $request->type;
-
         $show->save();
 
         $production = new Productions();
         $production->show_id = $show->id;
         $production->user_id = $user->id;
         $production->save();
+
+        //Send email to new user
+        $user->notify(new ShowCreated([
+            'email' => $request->email,
+            'password' => $request->password,//This is amazingly insecure, and I am very aware of that.
+            'show' => $request->name,
+            'week' => $request->week,
+            'type' => $request->type,
+        ]));
 
         return response()->json([
             'message' => 'Successfully created Production!',
