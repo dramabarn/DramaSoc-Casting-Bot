@@ -19,17 +19,17 @@ Auth::routes();
 
 Route::group(['middleware' => ['get.menu', 'auth']], function () {
     //General Routes
-    Route::get('/', 'Cast@index')->name('home');
-    Route::get('/home', 'Cast@index');
+    Route::get('/', 'CastController@index')->name('home');
+    Route::get('/home', 'CastController@index');
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     //Casting Routes
     Route::group(['middleware' => ['show']], function () {
-        Route::get('cast/choices', 'Cast@choices');
-        Route::get('cast/enter', 'Cast@enter');
-        Route::get('cast/addrole', 'Cast@addRole');
-        Route::post('cast/enter', 'Cast@storeChoice');
-        Route::post('cast/addrole', 'Cast@storeRole');
+        Route::get('cast/choices', 'CastController@choices');
+        Route::get('cast/enter', 'CastController@enter');
+        Route::get('cast/addrole', 'CastController@addRole');
+        Route::post('cast/enter', 'CastController@storeChoice');
+        Route::post('cast/addrole', 'CastController@storeRole');
     } );
     Route::resources(['cast' => 'Cast']);
 
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['get.menu', 'auth']], function () {
         Route::get('admin/view', 'AdminController@view')->name('viewProductions');
         Route::get('admin/view/{id}', 'AdminController@viewSingle')->name('viewSingleProduction');
         Route::get('admin/people', 'AdminController@actors')->name('viewPeople');
-        Route::get('admin/users', 'AdminController@users')->name('viewUsers');
+        Route::get('admin/users', 'UsersController@index')->name('viewUsers');
         Route::post('admin/add', 'AdminController@addProduction');
         Route::post('admin/cast-person', 'AdminController@castPerson');
         Route::post('admin/remove', 'AdminController@deleteChoice');

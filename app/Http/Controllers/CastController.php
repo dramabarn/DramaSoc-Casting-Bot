@@ -10,7 +10,7 @@ use App\Models\Productions;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class Cast extends Controller
+class CastController extends Controller
 {
     //
     public function __construct()
