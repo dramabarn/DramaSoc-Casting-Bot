@@ -17,10 +17,10 @@ class CreateChoicesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('role_name');
-            $table->foreignId('1st_choice');
-            $table->foreignId('2nd_choice');
-            $table->foreignId('3rd_choice');
-            $table->boolean('casted');
+            $table->foreignId('1st_choice')->nullable();
+            $table->foreignId('2nd_choice')->nullable();
+            $table->foreignId('3rd_choice')->nullable();
+            $table->boolean('casted')->default(0);
         });
     }
 

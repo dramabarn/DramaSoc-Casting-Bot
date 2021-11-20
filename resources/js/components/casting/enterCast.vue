@@ -9,13 +9,19 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <div class="container text-center">
+                    <p v-if="errors.length">
+                        <b>Please correct the following error(s):</b>
+                    </p>
+                    <p v-for="error in errors">{{ error }}</p>
+                </div>
                 <div role="form" id="createProduction">
                     <div class="row">
                         <div class="col">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>University Username</label>
-                                <input type="text" class="form-control" placeholder="abc500" v-model="username">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="abc123@york.ac.uk" v-model="username">
                             </div>
                         </div>
                     </div>
@@ -99,8 +105,10 @@ export default {
     },
 
     methods: {
-
-
+        validEmail: function (email) {
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
         enterCast() {
             this.submitting = true
 
@@ -110,34 +118,49 @@ export default {
                 phone: this.phone,
                 role_id: this.rolename,
                 choice: this.choice,
-
             }
-            console.log(data)
 
-            axios.post(`/cast/enter`, data)
-                .then(response => {
-                    this.errors = {}
+            //error checks
+            this.errors = [];
+            if (!this.name){
+                this.errors.push("Please enter a name");
+            }
+            if (!this.username) {
+                this.errors.push('Please enter an email');
+            } else if (!this.validEmail(this.username)) {
+                this.errors.push('Email address is invalid');
+            }
+            if (!this.phone) {
+                this.errors.push("Please enter a phone number");
+            }
+
+            if (this.errors.length === 0) {
+                axios.post(`/cast/enter`, data)
+                    .then(response => {
+                        this.errors = {}
+                        this.submitting = false
+                        Swal.fire({
+                            title: 'Choice Added!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                                window.location.href = "/cast/enter"
+                            }
+                        )
+                    }).catch(error => {
+                    console.log(error)
                     this.submitting = false
                     Swal.fire({
-                        title: 'Choice Added!',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
                     }).then((result) => {
-                            window.location.href = "/cast/enter"
-                        }
-                    )
-                }).catch(error => {
-                console.log(error)
-                console.log(response.data.errors)
-                this.submitting = false
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                }).then((result) => {
-                    location.reload();
-                });
-            })
+                        location.reload();
+                    });
+                })
+            } else {
+                this.submitting = false;
+            }
         }
     }
 }
